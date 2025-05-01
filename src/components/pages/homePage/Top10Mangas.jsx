@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import AnimeCard from '../../anime/AnimeCard';
+import MangaCard from '../../manga/MangaCard';
 import fetchData from "../../../utils/api/anilistFetch.js";
 
 function reorderArrayByIndex(array, index) {
@@ -11,29 +11,29 @@ function reorderArrayByIndex(array, index) {
 
 let animesArray = [];
 
-function Top10Animes({query}) {
+function Top10Mangas({query}) {
 
-    const [currentAnimeIndex, setCurrentAnimeIndex] = useState(0);
-    const [animes,setAnimes] = useState([]);
+    const [currentAnimeIndex, setCurrentMangaIndex] = useState(0);
+    const [animes,setMangas] = useState([]);
     
     useEffect(()=>{
-        handleLoadAnimes();
+        handleLoadMangas();
     },[])
 
-    const handleLoadAnimes = async()=>{
+    const handleLoadMangas = async()=>{
         const result  = await fetchData(query);
         console.log(result);
-        setAnimes(result.data.Page.media);
+        setMangas(result.data.Page.media);
     }
 
-    const handlePreviousAnime = () => {
-        setCurrentAnimeIndex((prevIndex) =>
+    const handlePreviousManga = () => {
+        setCurrentMangaIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : animes.length - 1
         );
     };
 
-    const handleNextAnime = () => {
-        setCurrentAnimeIndex((prevIndex) =>
+    const handleNextManga = () => {
+        setCurrentMangaIndex((prevIndex) =>
             prevIndex < animes.length - 1 ? prevIndex + 1 : 0
         );
     };
@@ -42,24 +42,24 @@ function Top10Animes({query}) {
 
     return (
 
-        <section className="top-10-anime">
+        <section className="topmanga">
 
             <h1>TOP 10 ANIMES</h1>
 
-            <button onClick={() => handlePreviousAnime()}>
+            <button onClick={() => handlePreviousManga()}>
                 Izda.
             </button>
 
-            <section className="anime-list">
+            <section className="manga-list">
 
-                {animesArray.map(anime=>{
-                    return <AnimeCard anime={anime} key={anime.id} /> 
+                {animesArray.map(manga=>{
+                    return <MangaCard manga={manga} key={manga.id} /> 
                 })
                 }
 
             </section>
 
-            <button onClick={() => handleNextAnime()}>
+            <button onClick={() => handleNextManga()}>
                 Drch.
             </button>
 
@@ -68,4 +68,4 @@ function Top10Animes({query}) {
 
 }
 
-export default Top10Animes;
+export default Top10Mangas;

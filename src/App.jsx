@@ -2,6 +2,7 @@ import { useState } from 'react'
 import AnimeList from './components/anime/AnimeList';
 import MangaList from './components/manga/MangaList';
 import Top10Animes from './components/pages/homePage/Top10Animes';
+import Top10Mangas from './components/pages/homePage/Top10Mangas';
 //import './App.css'
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
   let query7 = `
       query Media {
           Page(page: 1, perPage: 10) {
-              media(sort: POPULARITY_DESC, type: ANIME) {
+              media(sort: POPULARITY_DESC, type: MANGA) {
                   id
                   title {
                       romaji
@@ -80,7 +81,7 @@ function App() {
 
   return (
     <>
-      <Top10Animes query={query7}/>
+      <Top10Mangas query={query7}/>
     </>
   )
 }
