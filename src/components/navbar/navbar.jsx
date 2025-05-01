@@ -17,7 +17,7 @@ function Navbar ({onRouteChange, userAvatar}){
     };
 
     return (
-        <nav>
+        <nav id='menu'>
             <div className="menu__logo">
                 <a href="index.html">
                     <p id="logo-header">PUNK RECORDS</p>
