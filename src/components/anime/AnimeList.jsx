@@ -5,6 +5,7 @@ import './AnimeList.css'
 
 
 function AnimeList({query, variables}){
+    
     const [animes,setAnimes] = useState([]);
     
     useEffect(()=>{

@@ -103,12 +103,12 @@ body {
 
 /*END VARIABLES */
 
-h1 { /* TODO CAMBIAR A H2 MAYUS */
+h1 { 
   font-family: var(--main-font);
   font-size: 3rem;
 }
 
-h3 { /* TODO MAYUS */
+h3 { 
   font-family: var(--main-font);
   font-size: 2rem;
 }
