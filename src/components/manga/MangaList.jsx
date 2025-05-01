@@ -1,27 +1,27 @@
 import { useState,useEffect } from "react";
-import AnimeCard from "./AnimeCard";
+import MangaCard from "./MangaCard.jsx";
 import fetchData from "../../utils/api/anilistFetch.js";
-import './AnimeList.css'
+import './MangaList.css'
 
 
 function AnimeList({query, variables}){
-    const [animes,setAnimes] = useState([]);
+    const [mangas,setMangas] = useState([]);
     
     useEffect(()=>{
-        handleLoadAnimes();
+        handleLoadMangas();
     },[])
 
-    const handleLoadAnimes = async()=>{
+    const handleLoadMangas = async()=>{
         const result  = await fetchData(query, variables);
         console.log(result);
-        setAnimes(result.data.Page.media);
+        setMangas(result.data.Page.media);
     }
 
     return (
         <section className="anime-list">
 
-            {animes.map(anime=>{
-                return <AnimeCard anime={anime} key={anime.id} /> 
+            {mangas.map(manga => {
+                return <MangaCard manga={manga} key={manga.id} /> 
             })
             }
 

@@ -1,49 +1,49 @@
-import './AnimeCard.css';
+import './MangaCard.css';
 
-function AnimeCard ({anime}){
+function MangaCard ({manga}){
 
     return(
-        <article className="anime card">
+        <article className="manga card">
             
-            <section className="anime-image">
-                <img src={anime.coverImage.large} alt={anime.title.english? anime.title.english : anime.title.romaji}/>
+            <section className="manga-image">
+                <img src={manga.coverImage.large} alt={manga.title.english? manga.title.english : manga.title.romaji}/>
             </section>
 
-            <section className="anime-data">
+            <section className="manga-data">
                 
                 <ul className="title-list">
                     <li className="title-english" >
-                        English: {anime.title.english}
+                        English: {manga.title.english}
                     </li>
                     <li className="title-native" >
-                        Native: {anime.title.native}
+                        Native: {manga.title.native}
                     </li>
                     <li className="title-romaji" >
-                        Romaji: {anime.title.romaji}
+                        Romaji: {manga.title.romaji}
                     </li>
                 </ul>
 
-                <h4 className="anime-format">{anime.format}</h4>
+                <h4 className="manga-format">{manga.format}</h4>
 
-                <ul className="anime-attributes">
+                <ul className="manga-attributes">
                     <li className="attribute date" >
-                        Realese Date: {anime.title.english}
+                        Realese Date: {manga.title.english}
                     </li>
                     <li className="attribute episodes" >
-                        Episodes: {anime.episodes}
+                        Chapters: {manga.chapters}
                     </li>
                     <li className="attribute duration" >
-                        Average Duration: {anime.duration}
+                        Volumes: {manga.volumes}
                     </li>
 
                     <li className="attribute description" >
-                        {anime.description}
+                        {manga.description}
                     </li>
 
                 </ul>
 
                 <p className="attribute genres" >
-                        Genres: {anime.genres.join(", ")}
+                        Genres: {manga.genres.join(", ")}
                 </p>
 
                 <button className='favButton'>Favorite</button>
@@ -56,4 +56,4 @@ function AnimeCard ({anime}){
     )
 }
 
-export default AnimeCard;
+export default MangaCard;

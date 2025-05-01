@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import AnimeList from './components/anime/AnimeList';
+import MangaList from './components/manga/MangaList';
 import './App.css'
 
 function App() {
@@ -45,13 +46,40 @@ function App() {
         }
       }`;
 
+  let query7 = `
+      query Media {
+          Page(page: 1, perPage: 10) {
+              media(sort: POPULARITY_DESC, type: MANGA) {
+                  id
+                  title {
+                      romaji
+                      english
+                      native
+                  }
+                  format
+                  status
+                  startDate {
+                      year
+                  }
+                  coverImage {
+                      large
+                  }
+                  description
+                  episodes
+                  duration
+                  genres
+              }
+          }
+      }
+  `;
+
     let variables ={
         id: 106863
     };
 
   return (
     <>
-      <AnimeList query={query} variables={variables}/>
+      <MangaList query={query7}/>
     </>
   )
 }
