@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import AnimeList from './components/anime/AnimeList';
 import MangaList from './components/manga/MangaList';
-import './App.css'
+//import './App.css'
 
 function App() {
 

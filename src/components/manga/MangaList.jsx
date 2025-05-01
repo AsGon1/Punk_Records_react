@@ -18,7 +18,7 @@ function AnimeList({query, variables}){
     }
 
     return (
-        <section className="anime-list">
+        <section className="manga-list">
 
             {mangas.map(manga => {
                 return <MangaCard manga={manga} key={manga.id} /> 
