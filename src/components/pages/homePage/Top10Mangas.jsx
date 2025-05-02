@@ -2,6 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import MangaCard from '../../manga/MangaCard';
 import fetchData from "../../../utils/api/anilistFetch.js";
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
+import './Top10Mangas.css'
+
 function reorderArrayByIndex(array, index) {
     return [
         ...array.slice(index), // Elementos desde el índice hacia adelante
@@ -13,7 +18,7 @@ let animesArray = [];
 
 function Top10Mangas({query}) {
 
-    const [currentAnimeIndex, setCurrentMangaIndex] = useState(0);
+    const [currentMangaIndex, setCurrentMangaIndex] = useState(0);
     const [animes,setMangas] = useState([]);
     
     useEffect(()=>{
@@ -38,16 +43,16 @@ function Top10Mangas({query}) {
         );
     };
 
-    animesArray = reorderArrayByIndex(animes, currentAnimeIndex);
+    animesArray = reorderArrayByIndex(animes, currentMangaIndex);
 
     return (
 
         <section className="topmanga">
 
-            <h1>TOP 10 ANIMES</h1>
+            <h1>TOP 10 MANGAS</h1>
 
-            <button onClick={() => handlePreviousManga()}>
-                Izda.
+            <button className="topmanga-prev-button" onClick={() => handlePreviousManga()}>
+                <ArrowBackIosNewIcon fontSize="small" />
             </button>
 
             <section className="manga-list">
@@ -59,8 +64,8 @@ function Top10Mangas({query}) {
 
             </section>
 
-            <button onClick={() => handleNextManga()}>
-                Drch.
+            <button className="topmanga-next-button" onClick={() => handleNextManga()}>
+                <ArrowForwardIosIcon fontSize="small" />
             </button>
 
         </section>

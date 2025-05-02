@@ -3,6 +3,7 @@ import AnimeList from './components/anime/AnimeList';
 import MangaList from './components/manga/MangaList';
 import Top10Animes from './components/pages/homePage/Top10Animes';
 import Top10Mangas from './components/pages/homePage/Top10Mangas';
+import SearchBar from './components/searchbar/SearchBar';
 //import './App.css'
 
 function App() {

@@ -2,6 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import AnimeCard from '../../anime/AnimeCard';
 import fetchData from "../../../utils/api/anilistFetch.js";
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
+import './Top10Animes.css'
+
 function reorderArrayByIndex(array, index) {
     return [
         ...array.slice(index), // Elementos desde el índice hacia adelante
@@ -42,12 +47,12 @@ function Top10Animes({query}) {
 
     return (
 
-        <section className="top-10-anime">
+        <section className="topanime">
 
             <h1>TOP 10 ANIMES</h1>
 
-            <button onClick={() => handlePreviousAnime()}>
-                Izda.
+            <button className="topanime-prev-button" onClick={() => handlePreviousAnime()}>
+                <ArrowBackIosNewIcon fontSize="small" />
             </button>
 
             <section className="anime-list">
@@ -59,8 +64,8 @@ function Top10Animes({query}) {
 
             </section>
 
-            <button onClick={() => handleNextAnime()}>
-                Drch.
+            <button className="topanime-next-button" onClick={() => handleNextAnime()}>
+                <ArrowForwardIosIcon fontSize="small" />
             </button>
 
         </section>

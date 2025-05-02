@@ -1,4 +1,4 @@
-.topanime .topanime-prev-button, .topanime .topanime-next-button {
+.topmanga .topmanga-prev-button, .topmanga .topmanga-next-button {
     padding: 1em;
     border: 2px solid transparent;
     border-radius: 100%;
@@ -15,7 +15,7 @@
     transition: all .3s ease;
 }
 
-.topanime .topanime-prev-button:hover, .topanime .topanime-next-button:hover {
+.topmanga .topmanga-prev-button:hover, .topmanga .topmanga-next-button:hover {
     border: 2px solid var(--main-color-30);
 
     background-color: var(--main-color-10);
