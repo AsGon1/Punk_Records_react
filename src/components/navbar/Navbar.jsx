@@ -50,7 +50,7 @@ function Navbar ({onRouteChange, userAvatar}){
                             {userAvatar ? (
                                 <img src={userAvatar} alt="user avatar" />
                             ) : (
-                                <AccountCircleIcon fontSize="large" /> //Todo instalar mui
+                                <AccountCircleIcon fontSize="medium" />
                             )}
                         </button>
 					</li>
