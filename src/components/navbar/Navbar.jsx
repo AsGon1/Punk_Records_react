@@ -1,5 +1,10 @@
-import { removeToken } from '../../utils/localStorage';
+// import { removeToken } from '../../utils/localStorage';
 import { useState, useEffect } from "react";
+
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import CloseIcon from '@mui/icons-material/Close';
+
 import './Navbar.css';
 
 
@@ -7,10 +12,10 @@ function Navbar ({onRouteChange, userAvatar}){
 
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false);
 
-    const handleLogout = ()=>{
+    /* const handleLogout = ()=>{
         removeToken();
         onRouteChange("home");
-    }
+    } */
 
     const handleOpenOptions = () => {
         setIsBurgerMenuOpened(!isBurgerMenuOpened);
@@ -36,7 +41,7 @@ function Navbar ({onRouteChange, userAvatar}){
                             <button onClick={()=>onRouteChange("login")}>Login</button>
 					    </li>
                     ):(
-                        <li className={"nav-item "}>
+                        <li className={"nav-item"}>
                             <button onClick={handleLogout}>Logout</button>
                         </li>
                     )}

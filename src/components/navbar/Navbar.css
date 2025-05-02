@@ -47,7 +47,7 @@ header {
     gap: .5em;
 }
 
-#menu .menu__burger .menu__burger-links .menu__burger-link {
+#menu .menu__burger .menu__burger-links .menu__burger-link button{
     font-family: var(--second-font);
     font-size: 1rem;
 
@@ -59,7 +59,7 @@ header {
     transition: all .3s ease;
 }
 
-#menu .menu__burger .menu__burger-links .menu__burger-link:hover {
+#menu .menu__burger .menu__burger-links .menu__burger-link button:hover {
     background-color: var(--main-color-30);
     color: var(--main-color-10);
 }
