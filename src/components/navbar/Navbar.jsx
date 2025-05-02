@@ -28,7 +28,7 @@ function Navbar ({onRouteChange, userAvatar}){
                     <p id="logo-header">PUNK RECORDS</p>
                 </a>
             </div>
-            <div className="menu__burger">
+            <div className={"menu__burger" + (isBurgerMenuOpened ? "active" : "")}>
                 <ul className="menu__burger-links" id="nav-apartados">
                     <li className="menu__burger-link">
                         <button onClick={()=>onRouteChange("home")}>Home</button>
@@ -58,7 +58,7 @@ function Navbar ({onRouteChange, userAvatar}){
 
                 <div className="menu__burger-icon" id="burger_icon">
                     <button onClick={() => handleOpenOptions()}>
-                        {isBurgerMenuOpened ? (
+                        {!isBurgerMenuOpened ? (
                             <MenuRoundedIcon />
                         ) : (
                             <CloseIcon />
