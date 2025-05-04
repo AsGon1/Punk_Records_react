@@ -1,49 +1,46 @@
 import { useState, useRef, useEffect } from "react";
 import MangaCard from '../../manga/MangaCard';
 import fetchData from "../../../utils/api/anilistFetch.js";
+import { topTenManga } from "../../../utils/api/queries.js";
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import './Top10Mangas.css'
 
-function reorderArrayByIndex(array, index) {
-    return [
-        ...array.slice(index), // Elementos desde el índice hacia adelante
-        ...array.slice(0, index), // Elementos desde el inicio hasta el índice
-    ];
-}
+const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
-let animesArray = [];
+function Top10Mangas() {
 
-function Top10Mangas({query}) {
-
-    const [currentMangaIndex, setCurrentMangaIndex] = useState(0);
-    const [animes,setMangas] = useState([]);
+    const [mangas,setMangas] = useState([]);
     
     useEffect(()=>{
         handleLoadMangas();
     },[])
 
     const handleLoadMangas = async()=>{
-        const result  = await fetchData(query);
+        const result  = await fetchData(topTenManga);
         console.log(result);
         setMangas(result.data.Page.media);
     }
-
-    const handlePreviousManga = () => {
-        setCurrentMangaIndex((prevIndex) =>
-            prevIndex > 0 ? prevIndex - 1 : animes.length - 1
-        );
-    };
-
-    const handleNextManga = () => {
-        setCurrentMangaIndex((prevIndex) =>
-            prevIndex < animes.length - 1 ? prevIndex + 1 : 0
-        );
-    };
-
-    animesArray = reorderArrayByIndex(animes, currentMangaIndex);
 
     return (
 
@@ -51,23 +48,13 @@ function Top10Mangas({query}) {
 
             <h1>TOP 10 MANGAS</h1>
 
-            <button className="topmanga-prev-button" onClick={() => handlePreviousManga()}>
-                <ArrowBackIosNewIcon fontSize="small" />
-            </button>
-
-            <section className="manga-list">
-
-                {animesArray.map(manga=>{
-                    return <MangaCard manga={manga} key={manga.id} /> 
-                })
-                }
-
-            </section>
-
-            <button className="topmanga-next-button" onClick={() => handleNextManga()}>
-                <ArrowForwardIosIcon fontSize="small" />
-            </button>
-
+            <Carousel responsive={responsive}>
+                    {mangas.map(manga=>{
+                        return <MangaCard manga={manga} key={manga.id} /> 
+                    })
+                    }
+            </Carousel>
+            
         </section>
     )
 

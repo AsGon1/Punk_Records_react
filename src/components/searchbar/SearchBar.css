@@ -1,4 +1,15 @@
-.search .search-bar .search-input {
+
+.search-bar {
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    padding: 2em 10%;
+
+    gap: .2em;
+}
+
+.search-bar .search-input {
     width: 50%;
     padding: .5em 1em;
 
@@ -9,7 +20,7 @@
     font-size: 1rem;
 }
 
-.search .search-bar .search-button {
+.search-bar .search-button {
     padding: 1em;
     border: 2px solid transparent;
     border-radius: 100%;
@@ -26,7 +37,7 @@
     transition: all .3s ease;
 }
 
-.search .search-bar .search-button:hover {
+.search-bar .search-button:hover {
     border: 2px solid var(--main-color-30);
 
     background-color: var(--main-color-10);

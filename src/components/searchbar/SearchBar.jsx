@@ -11,7 +11,6 @@ function SearchBar() {
     };
 
     return (
-        <section className="search">
             <article className="search-bar">
                 <input
                     type="text"
@@ -24,7 +23,6 @@ function SearchBar() {
                     <SearchOutlinedIcon fontSize="small" />
                 </button>
             </article>
-        </section>
     );
 }
 

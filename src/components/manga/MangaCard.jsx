@@ -1,6 +1,15 @@
+
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+
+import InfoIcon from '@mui/icons-material/Info';
+
 import './MangaCard.css';
 
-function MangaCard ({manga}){
+function MangaCard ({manga, isFav = false, isFinished = false}){
 
     return(
         <article className="manga card">
@@ -46,9 +55,15 @@ function MangaCard ({manga}){
                         Genres: {manga.genres.join(", ")}
                 </p>
 
-                <button className='favButton'>Favorite</button>
-                <button className='viewedButton'>Viewed</button>
-                <button className='infoButton'>Info</button>
+                <button className='favButton'>
+                    {!isFav? <FavoriteBorderIcon fontSize='small'/> : <FavoriteIcon fontSize='small'/> }
+                </button>
+                <button className='readButton'>
+                    {!isFinished? <BookmarkBorderIcon fontSize='small'/> : <BookmarkIcon fontSize='small'/> }
+                </button>
+                <button className='infoButton'>
+                    <InfoIcon fontSize='small'/>
+                </button>
 
             </section>
 

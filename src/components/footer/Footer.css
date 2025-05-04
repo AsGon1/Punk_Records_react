@@ -24,7 +24,7 @@ footer .social, footer .copyright {
     gap: 2em ;
 }
 
-footer .copyright {
+footer #copyright {
     background-color: black;
     width: 100vw;
     padding: .5em;

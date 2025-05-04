@@ -6,6 +6,8 @@ import Top10Mangas from './components/pages/homePage/Top10Mangas';
 import SearchBar from './components/searchbar/SearchBar';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
+import Home from './pages/home/Home';
+
 //import './App.css'
 
 function App() {
@@ -84,7 +86,7 @@ function App() {
 
   return (
     <>
-      <Navbar/>
+      <Home/>
     </>
   )
 }

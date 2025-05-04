@@ -1,24 +1,35 @@
 import { useState, useRef, useEffect } from "react";
 import AnimeCard from '../../anime/AnimeCard';
 import fetchData from "../../../utils/api/anilistFetch.js";
+import { topTenAnime } from "../../../utils/api/queries.js";
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import './Top10Animes.css'
 
-function reorderArrayByIndex(array, index) {
-    return [
-        ...array.slice(index), // Elementos desde el índice hacia adelante
-        ...array.slice(0, index), // Elementos desde el inicio hasta el índice
-    ];
-}
+const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
-let animesArray = [];
+function Top10Animes() {
 
-function Top10Animes({query}) {
-
-    const [currentAnimeIndex, setCurrentAnimeIndex] = useState(0);
     const [animes,setAnimes] = useState([]);
     
     useEffect(()=>{
@@ -26,24 +37,10 @@ function Top10Animes({query}) {
     },[])
 
     const handleLoadAnimes = async()=>{
-        const result  = await fetchData(query);
+        const result  = await fetchData(topTenAnime);
         console.log(result);
         setAnimes(result.data.Page.media);
     }
-
-    const handlePreviousAnime = () => {
-        setCurrentAnimeIndex((prevIndex) =>
-            prevIndex > 0 ? prevIndex - 1 : animes.length - 1
-        );
-    };
-
-    const handleNextAnime = () => {
-        setCurrentAnimeIndex((prevIndex) =>
-            prevIndex < animes.length - 1 ? prevIndex + 1 : 0
-        );
-    };
-
-    animesArray = reorderArrayByIndex(animes, currentAnimeIndex);
 
     return (
 
@@ -51,22 +48,12 @@ function Top10Animes({query}) {
 
             <h1>TOP 10 ANIMES</h1>
 
-            <button className="topanime-prev-button" onClick={() => handlePreviousAnime()}>
-                <ArrowBackIosNewIcon fontSize="small" />
-            </button>
-
-            <section className="anime-list">
-
-                {animesArray.map(anime=>{
+            <Carousel responsive={responsive}>
+                {animes.map(anime=>{
                     return <AnimeCard anime={anime} key={anime.id} /> 
                 })
                 }
-
-            </section>
-
-            <button className="topanime-next-button" onClick={() => handleNextAnime()}>
-                <ArrowForwardIosIcon fontSize="small" />
-            </button>
+            </Carousel>
 
         </section>
     )

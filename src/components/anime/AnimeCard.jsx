@@ -1,6 +1,15 @@
+
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+
+import InfoIcon from '@mui/icons-material/Info';
+
 import './AnimeCard.css';
 
-function AnimeCard ({anime}){
+function AnimeCard ({anime, isFav = false, isFinished = false}){
 
     return(
         <article className="anime card">
@@ -46,9 +55,15 @@ function AnimeCard ({anime}){
                         Genres: {anime.genres.join(", ")}
                 </p>
 
-                <button className='favButton'>Favorite</button>
-                <button className='viewedButton'>Viewed</button>
-                <button className='infoButton'>Info</button>
+                <button className='favButton'>
+                    {!isFav? <FavoriteBorderIcon fontSize='small'/> : <FavoriteIcon fontSize='small'/> }
+                </button>
+                <button className='viewedButton'>
+                    {!isFinished? <VisibilityOutlinedIcon fontSize='small'/> : <VisibilityIcon fontSize='small'/> }
+                </button>
+                <button className='infoButton'>
+                    <InfoIcon fontSize='small'/>
+                </button>
 
             </section>
 

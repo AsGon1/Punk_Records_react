@@ -41,7 +41,7 @@ function Navbar ({onRouteChange, userAvatar}){
                             <button onClick={()=>onRouteChange("login")}>Login</button>
 					    </li>
                     ):(
-                        <li className={"nav-item"}>
+                        <li className={"menu__burger-link"}>
                             <button onClick={handleLogout}>Logout</button>
                         </li>
                     )}

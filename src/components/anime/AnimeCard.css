@@ -146,3 +146,18 @@
     background-color: var(--main-color-10);
     color: var(--main-color-30);
 }
+
+@media (max-width: 768px) {
+    .card {
+        margin: 0 10%;
+        gap: .2em;
+    }
+
+    .card h3 {
+        font-size: .3rem;
+    }
+
+    .card:hover .anime-attributes .description {
+        display: none;
+    }
+}
