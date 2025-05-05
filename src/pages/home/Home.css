@@ -23,25 +23,3 @@ main {
     width: 100vw;
     background-color: var(--main-color-60);
 }
-
-main .search {
-    width: 100%;
-    
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    padding: .5em 10%;
-
-    gap: .2em;
-}
-
-main .filters {
-    width: 100%;
-    
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    padding: .5em 10%;
-
-    gap: .2em;
-}

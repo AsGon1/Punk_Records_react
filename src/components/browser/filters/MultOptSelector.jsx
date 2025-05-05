@@ -4,7 +4,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import RadioButtonUncheckedRoundedIcon from "@mui/icons-material/RadioButtonUncheckedRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
-function Selector({ options, noOptionText, onChange }) {
+function MultOptSelector({ options, noOptionText, onChange }) {
     
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState([]);
@@ -110,4 +110,4 @@ function Selector({ options, noOptionText, onChange }) {
         </>
     );
 }
-export default Selector;
+export default MultOptSelector;
