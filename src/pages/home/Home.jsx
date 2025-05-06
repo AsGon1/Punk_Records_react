@@ -1,6 +1,6 @@
 import Navbar from "../../components/navbar/Navbar";
-import Top10Mangas from "../../components/pages/homePage/Top10Mangas";
-import Top10Animes from "../../components/pages/homePage/Top10Animes";
+import Top10Mangas from "../../components/TopsHome/Top10Mangas";
+import Top10Animes from "../../components/TopsHome/Top10Animes";
 import Footer from "../../components/footer/Footer";
 import BrowserBar from "../../components/browser/BrowserBar";
 

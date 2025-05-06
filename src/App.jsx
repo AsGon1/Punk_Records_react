@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import AnimeList from './components/anime/AnimeList';
-import MangaList from './components/manga/MangaList';
-import Top10Animes from './components/pages/homePage/Top10Animes';
-import Top10Mangas from './components/pages/homePage/Top10Mangas';
-import SearchBar from './components/browser/searchbar/SearchBar';
+
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import Home from './pages/home/Home';
@@ -87,7 +83,7 @@ function App() {
 
   return (
     <>
-      <Browser/>
+      <Home/>
     </>
   )
 }

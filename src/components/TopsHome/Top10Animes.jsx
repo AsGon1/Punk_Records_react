@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import MangaCard from '../../manga/MangaCard';
-import fetchData from "../../../utils/api/anilistFetch.js";
-import { topTenManga } from "../../../utils/api/queries.js";
+import AnimeCard from '../anime/AnimeCard.jsx';
+import fetchData from "../../utils/api/anilistFetch.js";
+import { topTenAnime } from "../../utils/api/queries.js";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import './Top10Mangas.css'
+import './Top10Animes.css'
 
 const responsive = {
     superLargeDesktop: {
@@ -28,36 +28,36 @@ const responsive = {
     }
   };
 
-function Top10Mangas() {
+function Top10Animes() {
 
-    const [mangas,setMangas] = useState([]);
+    const [animes,setAnimes] = useState([]);
     
     useEffect(()=>{
-        handleLoadMangas();
+        handleLoadAnimes();
     },[])
 
-    const handleLoadMangas = async()=>{
-        const result  = await fetchData(topTenManga);
+    const handleLoadAnimes = async()=>{
+        const result  = await fetchData(topTenAnime);
         console.log(result);
-        setMangas(result.data.Page.media);
+        setAnimes(result.data.Page.media);
     }
 
     return (
 
-        <section className="topmanga">
+        <section className="topanime">
 
-            <h1>TOP 10 MANGAS</h1>
+            <h1>TOP 10 ANIMES</h1>
 
             <Carousel responsive={responsive}>
-                    {mangas.map(manga=>{
-                        return <MangaCard manga={manga} key={manga.id} /> 
-                    })
-                    }
+                {animes.map(anime=>{
+                    return <AnimeCard anime={anime} key={anime.id} /> 
+                })
+                }
             </Carousel>
-            
+
         </section>
     )
 
 }
 
-export default Top10Mangas;
+export default Top10Animes;
