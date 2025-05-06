@@ -36,7 +36,7 @@ function AnimeCard ({anime, isFav = false, isFinished = false}){
 
                 <ul className="anime-attributes">
                     <li className="attribute date" >
-                        Realese Date: {anime.title.english}
+                        Realese Date: {anime.startDate.year}
                     </li>
                     <li className="attribute episodes" >
                         Episodes: {anime.episodes}

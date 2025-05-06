@@ -20,7 +20,7 @@ function Footer (){
 
             <section id="copyright">
                 <h4>Asier Gonzalez</h4>
-                <h4 className="copyright-footer"><CopyrightIcon/>2025</h4>
+                <h4 className="copyright-footer"><CopyrightIcon fontSize='small'/>2025</h4>
 		    </section>
         </>
     )

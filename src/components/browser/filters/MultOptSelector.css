@@ -55,6 +55,7 @@
     box-sizing: border-box;
     border-radius: 5px;
     scrollbar-color: var(--main-color-30) transparent;
+    z-index: 1;
 }
 
 .selector .options-popup .option-container {

@@ -36,7 +36,7 @@ function MangaCard ({manga, isFav = false, isFinished = false}){
 
                 <ul className="manga-attributes">
                     <li className="attribute date" >
-                        Realese Date: {manga.title.english}
+                        Realese Date: {manga.startDate.year}
                     </li>
                     <li className="attribute episodes" >
                         Chapters: {manga.chapters}

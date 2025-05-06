@@ -1,28 +1,20 @@
-import { useState,useEffect } from "react";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useState, useEffect } from "react";
+
 import './SearchBar.css'
 
-function SearchBar() {
-
-    const [inputValue, setInputValue] = useState(""); // estado de lo que se escribe en la input
+function SearchBar({ onSubmit }) {
 
     const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+        onSubmit(e.target.value);
     };
 
     return (
-            <article className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    className="search-input"
-                />
-                <button type="submit" className="search-button">
-                    <SearchOutlinedIcon fontSize="small" />
-                </button>
-            </article>
+        <input
+            type="text"
+            placeholder="Search..."
+            onChange={handleInputChange}
+            className="search-input"
+        />
     );
 }
 

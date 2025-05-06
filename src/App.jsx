@@ -7,6 +7,7 @@ import SearchBar from './components/browser/searchbar/SearchBar';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import Home from './pages/home/Home';
+import Browser from './pages/browser/Browser';
 
 //import './App.css'
 
@@ -86,7 +87,7 @@ function App() {
 
   return (
     <>
-      <Home/>
+      <Browser/>
     </>
   )
 }

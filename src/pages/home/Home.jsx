@@ -4,8 +4,6 @@ import Top10Animes from "../../components/pages/homePage/Top10Animes";
 import Footer from "../../components/footer/Footer";
 import BrowserBar from "../../components/browser/BrowserBar";
 
-import types from "../../utils/api/selectOptions.js"
-
 import './Home.css'
 
 function Home() {

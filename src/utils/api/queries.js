@@ -165,11 +165,99 @@ let topTenAnime = `
     }
 `;
 
-export{
+const GET_MEDIA_BY_FILTER = `
+    query Query(
+        $search: String!
+        $page: Int
+        $perPage: Int
+        $type: MediaType
+        $sort: [MediaSort]
+        $genreIn: [String]
+    ) {
+        Page(page: $page, perPage: $perPage) {
+            media(search: $search, isAdult: false, type: $type, sort: $sort, genre_in: $genreIn) {
+                id
+                title {
+                    romaji
+                    english
+                    native
+                }
+                format
+                status
+                startDate {
+                    year
+                }
+                coverImage {
+                    large
+                }
+                description
+                genres
+                chapters
+                volumes
+                episodes
+                duration
+            }
+            pageInfo{
+                currentPage
+                lastPage
+                perPage
+                hasNextPage
+                total
+            }
+        }
+    }
+`;
+
+const GET_MEDIA_BY_FILTER_NO_SEARCH = `
+    query Query(
+        $page: Int
+        $perPage: Int
+        $type: MediaType
+        $sort: [MediaSort]
+        $genreIn: [String]
+    ) {
+        Page(page: $page, perPage: $perPage) {
+            media(isAdult: false, type: $type, sort: $sort, genre_in: $genreIn) {
+                id
+                title {
+                    romaji
+                    english
+                    native
+                }
+                format
+                status
+                startDate {
+                    year
+                }
+                coverImage {
+                    large
+                }
+                description
+                genres
+                chapters
+                volumes
+                episodes
+                duration
+            }
+            pageInfo{
+                currentPage
+                lastPage
+                perPage
+                hasNextPage
+                total
+            }
+        }
+    }
+`;
+
+export {
     mangaByTitle,
     animeByTitle,
     characterByName,
     queryById,
     topTenManga,
-    topTenAnime
+    topTenAnime,
+    GET_MEDIA_BY_FILTER,
+    GET_MEDIA_BY_FILTER_NO_SEARCH
+
 }

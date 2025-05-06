@@ -1,32 +1,100 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useActionState } from "react";
 import AnimeCard from "./AnimeCard";
 import fetchData from "../../utils/api/anilistFetch.js";
+
+import NavigateBeforeRoundedIcon from "@mui/icons-material/NavigateBeforeRounded";
+import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
+
 import './AnimeList.css'
 
 
 function AnimeList({query, variables}){
     
+    // Estados
     const [animes,setAnimes] = useState([]);
+    const [pageInfo, setPageInfo] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Función que recoge todas las variables finales para la busqueda, la diferencia con variables es que aquí se introduce la página
+    const getVariables = () => {
+        const finalVariables = {
+            page: currentPage,
+            perPage: 10,
+            sort: variables.sort,
+            type: variables.type,
+            genreIn: variables.genres? variables.genres : null,
+            search: variables.search || "One Piece"
+        };
+
+        // Filtrar las variables que sean null o undefined
+        return Object.fromEntries(
+            Object.entries(finalVariables).filter(([_, value]) => value !== null)
+        );
+    };
     
     useEffect(()=>{
         handleLoadAnimes();
-    },[])
+    },[variables])
 
     const handleLoadAnimes = async()=>{
+        const variables = getVariables()
+        console.log(variables)
         const result  = await fetchData(query, variables);
         console.log(result);
         setAnimes(result.data.Page.media);
+        {result.data.Page.pageInfo? setPageInfo(result.data.Page.pageInfo) : null } 
     }
 
-    return (
-        <section className="anime-list">
-
-            {animes.map(anime=>{
-                return <AnimeCard anime={anime} key={anime.id} /> 
-            })
+    const handlePrevPage = () => {
+        setCurrentPage((prev) => {
+            if (prev > 1) {
+                return prev - 1;
+            } else {
+                return prev;
             }
+        });
+    };
 
-        </section>
+    const handleNextPage = () => {
+        setCurrentPage((prev) => {
+            if (prev < pageInfo.lastPage) {
+                return prev + 1;
+            } else {
+                return prev;
+            }
+        });
+    };
+
+    return (
+        <>
+            <section className="anime-list">
+
+                {animes.map(anime=>{
+                    return <AnimeCard anime={anime} key={anime.id} /> 
+                })
+                }
+
+            </section>
+
+            {pageInfo.hasNextPage && (
+                <section className="pagination">
+                    <button className="previous-page-button" disabled={currentPage == 1} onClick={handlePrevPage}>
+                        <NavigateBeforeRoundedIcon/>
+                    </button>
+                    <div className="pagination-list">
+                        {/* {currentPage == 1? (
+
+                        ):} */}
+                    </div>
+                    <button className="next-page-button" 
+                            disabled={pageInfo.hasNextPage? true : false} 
+                            onClick={handleNextPage}>
+                        <NavigateNextRoundedIcon/>
+                    </button>
+                </section>
+            )}
+        </>
+        
     )
 }
 
