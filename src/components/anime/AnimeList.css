@@ -3,10 +3,9 @@
     max-width: 2000px;
     padding: 2em 10%;
 
-    display: flex;
-    flex-flow: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1em;
-    align-items: center;
 
     font-family: var(--second-font);
 }
