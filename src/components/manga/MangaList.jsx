@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import MangaCard from "./MangaCard.jsx";
 import fetchData from "../../utils/api/anilistFetch.js";
 
-import NavigateBeforeRoundedIcon from "@mui/icons-material/NavigateBeforeRounded";
-import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
+import { Pagination } from '@mui/material';
 
 import './MangaList.css'
 
 
 function MangaList({ query, variables }) {
 
+    // Estados
     const [mangas, setMangas] = useState([]);
     const [pageInfo, setPageInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +33,7 @@ function MangaList({ query, variables }) {
 
     useEffect(() => {
         handleLoadMangas();
-    }, [variables])
+    }, [variables, currentPage])
 
     const handleLoadMangas = async () => {
         const variables = getVariables()
@@ -44,54 +44,30 @@ function MangaList({ query, variables }) {
         { result.data.Page.pageInfo ? setPageInfo(result.data.Page.pageInfo) : null }
     }
 
-    const handlePrevPage = () => {
-        setCurrentPage((prev) => {
-            if (prev > 1) {
-                return prev - 1;
-            } else {
-                return prev;
-            }
-        });
-    };
-
-    const handleNextPage = () => {
-        setCurrentPage((prev) => {
-            if (prev < pageInfo.lastPage) {
-                return prev + 1;
-            } else {
-                return prev;
-            }
-        });
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
     };
 
     return (
         <>
-            <section className="manga-list">
+            <section className="manga-browse-section">
+                <section className="manga-list">
 
-                {mangas.map(manga => {
-                    return <MangaCard manga={manga} key={manga.id} />
-                })
-                }
+                    {mangas.map(manga => {
+                        return <MangaCard manga={manga} key={manga.id} />
+                    })
+                    }
 
+                </section>
+
+                {pageInfo.hasNextPage && (
+                    <section className="pagination">
+                        <Pagination count={pageInfo.lastPage} page={currentPage} onChange={handlePageChange}
+                            boundaryCount={2} showFirstButton showLastButton size="large" />
+                    </section>
+                )}
             </section>
 
-            {pageInfo.hasNextPage && (
-                <section className="pagination">
-                    <button className="previous-page-button" disabled={currentPage == 1} onClick={handlePrevPage}>
-                        <NavigateBeforeRoundedIcon />
-                    </button>
-                    <div className="pagination-list">
-                        {/* {currentPage == 1? (
-
-                        ):} */}
-                    </div>
-                    <button className="next-page-button"
-                        disabled={pageInfo.hasNextPage ? true : false}
-                        onClick={handleNextPage}>
-                        <NavigateNextRoundedIcon />
-                    </button>
-                </section>
-            )}
         </>
     )
 }

@@ -1,17 +1,16 @@
-import { useState,useEffect, useActionState } from "react";
+import { useState, useEffect, useActionState } from "react";
 import AnimeCard from "./AnimeCard";
 import fetchData from "../../utils/api/anilistFetch.js";
 
-import NavigateBeforeRoundedIcon from "@mui/icons-material/NavigateBeforeRounded";
-import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
+import { Pagination } from '@mui/material';
 
 import './AnimeList.css'
 
 
-function AnimeList({query, variables}){
-    
+function AnimeList({ query, variables }) {
+
     // Estados
-    const [animes,setAnimes] = useState([]);
+    const [animes, setAnimes] = useState([]);
     const [pageInfo, setPageInfo] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -22,7 +21,7 @@ function AnimeList({query, variables}){
             perPage: 10,
             sort: variables.sort,
             type: variables.type,
-            genreIn: variables.genres? variables.genres : null,
+            genreIn: variables.genres ? variables.genres : null,
             search: variables.search || "One Piece"
         };
 
@@ -31,70 +30,48 @@ function AnimeList({query, variables}){
             Object.entries(finalVariables).filter(([_, value]) => value !== null)
         );
     };
-    
-    useEffect(()=>{
-        handleLoadAnimes();
-    },[variables])
 
-    const handleLoadAnimes = async()=>{
+    useEffect(() => {
+        handleLoadAnimes();
+    }, [variables, currentPage])
+
+    const handleLoadAnimes = async () => {
         const variables = getVariables()
         console.log(variables)
-        const result  = await fetchData(query, variables);
+        const result = await fetchData(query, variables);
         console.log(result);
         setAnimes(result.data.Page.media);
-        {result.data.Page.pageInfo? setPageInfo(result.data.Page.pageInfo) : null } 
+        { result.data.Page.pageInfo ? setPageInfo(result.data.Page.pageInfo) : null }
     }
 
-    const handlePrevPage = () => {
-        setCurrentPage((prev) => {
-            if (prev > 1) {
-                return prev - 1;
-            } else {
-                return prev;
-            }
-        });
-    };
-
-    const handleNextPage = () => {
-        setCurrentPage((prev) => {
-            if (prev < pageInfo.lastPage) {
-                return prev + 1;
-            } else {
-                return prev;
-            }
-        });
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
     };
 
     return (
         <>
-            <section className="anime-list">
+            <section className="anime-browse-section">
 
-                {animes.map(anime=>{
-                    return <AnimeCard anime={anime} key={anime.id} /> 
-                })
-                }
+                <section className="anime-list">
+
+                    {animes.map(anime => {
+                        return <AnimeCard anime={anime} key={anime.id} />
+                    })
+                    }
+
+                </section>
+
+                {pageInfo.hasNextPage && (
+                    <section className="pagination">
+                        <Pagination count={pageInfo.lastPage} page={currentPage} onChange={handlePageChange}
+                            boundaryCount={2} showFirstButton showLastButton size="large" />
+                    </section>
+                )}
 
             </section>
 
-            {pageInfo.hasNextPage && (
-                <section className="pagination">
-                    <button className="previous-page-button" disabled={currentPage == 1} onClick={handlePrevPage}>
-                        <NavigateBeforeRoundedIcon/>
-                    </button>
-                    <div className="pagination-list">
-                        {/* {currentPage == 1? (
-
-                        ):} */}
-                    </div>
-                    <button className="next-page-button" 
-                            disabled={pageInfo.hasNextPage? true : false} 
-                            onClick={handleNextPage}>
-                        <NavigateNextRoundedIcon/>
-                    </button>
-                </section>
-            )}
         </>
-        
+
     )
 }
 

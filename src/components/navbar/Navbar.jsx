@@ -14,8 +14,6 @@ function Navbar({ onRouteChange, userAvatar }) {
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false); // Estado que nos dice si burger menu esta abierto o no
     const [isUserMenuOpened, setIsUserMenuOpened] = useState(false); // Estado que nos dice si el menu desplegable del usuario está abierto o no
 
-    // Referencias
-
     /* const handleLogout = ()=>{
         removeToken();
         onRouteChange("home");
@@ -64,7 +62,6 @@ function Navbar({ onRouteChange, userAvatar }) {
                                         </li>
                                     )}
                                 </ul>
-
                             </div>
                         </div>
                     )}
