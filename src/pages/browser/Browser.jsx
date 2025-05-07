@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer";
 import BrowserBar from "../../components/browser/BrowserBar";
 import AnimeList from "../../components/anime/AnimeList";
 import MangaList from "../../components/manga/MangaList.jsx";
@@ -27,9 +25,6 @@ function Browser() {
     }
     return (
         <>
-            <header>
-                <Navbar />
-            </header>
             <main>
                 <BrowserBar onSubmit={handleFilters} />
                 {searchFilters.type === "MANGA" ? (
@@ -46,9 +41,6 @@ function Browser() {
                     </>
                 )}
             </main>
-            <footer>
-                <Footer />
-            </footer>
         </>
     )
 }

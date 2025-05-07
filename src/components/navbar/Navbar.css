@@ -15,7 +15,7 @@
     color: black;
 }
 
-#menu .menu__logo {
+#menu .menu__logo-link {
     font-family: "ONE PIECE";
     font-weight: 600;
     font-size: 3rem;
@@ -50,7 +50,9 @@
     color: var(--main-color-10);
 }
 
-#menu .menu__burger .menu__burger-links .menu__burger-link button {
+#menu .menu__burger .menu__burger-links .menu__burger-link a {
+    width: 100%;
+    
     font-family: var(--second-font);
     font-size: 1rem;
 
@@ -62,7 +64,7 @@
     transition: all .3s ease;
 }
 
-#menu .menu__burger .menu__burger-links .menu__burger-link button:hover {
+#menu .menu__burger .menu__burger-links .menu__burger-link a:hover {
     background-color: var(--main-color-30);
     color: var(--main-color-10);
 }

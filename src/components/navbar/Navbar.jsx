@@ -1,6 +1,10 @@
 // import { removeToken } from '../../utils/localStorage';
 import { useState } from "react";
 
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import RouteContext from '../../context/routeContext';
+
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,11 +12,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import './Navbar.css';
 
 
-function Navbar({ onRouteChange, userAvatar }) {
+function Navbar({userAvatar}) {
 
     // Estados
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false); // Estado que nos dice si burger menu esta abierto o no
     const [isUserMenuOpened, setIsUserMenuOpened] = useState(false); // Estado que nos dice si el menu desplegable del usuario está abierto o no
+
+    const {route,onRouteChange} = useContext(RouteContext);
 
     /* const handleLogout = ()=>{
         removeToken();
@@ -26,17 +32,15 @@ function Navbar({ onRouteChange, userAvatar }) {
     return (
         <nav id='menu'>
             <div className="menu__logo">
-                <a href="index.html">
-                    <p id="logo-header">PUNK RECORDS</p>
-                </a>
+                <NavLink className="menu__logo-link" to="/home">PUNK RECORDS</NavLink>
             </div>
             <div className={"menu__burger" + (isBurgerMenuOpened ? "active" : "")}>
                 <ul className="menu__burger-links" id="nav-apartados">
                     <li className="menu__burger-link">
-                        <button onClick={() => onRouteChange("home")}>Home</button>
+                        <NavLink to="/home">HOME</NavLink>
                     </li>
                     <li className="menu__burger-link">
-                        <button onClick={() => onRouteChange("browser")}>Browser</button>
+                        <NavLink to="/browser">BROWSER</NavLink>
                     </li>
                     <li className="menu__burger-link">
                         <div className="user__avatar" onClick={() => setIsUserMenuOpened(!isUserMenuOpened)}>

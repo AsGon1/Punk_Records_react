@@ -40,13 +40,19 @@ function BrowserBar({ onSubmit }) {
         onSubmit(variables);
     }
 
+    const handleEnterSubmit = () => {
+        const variables = getFilterVariables();
+        console.log(variables);
+        onSubmit(variables);
+    }
+
     // función para construir el objeto que guarda la información de la query que se va ha hacer
     const getFilterVariables = () => {
         const filterVariables = {
             sort: sort,
             type: type,
             genres: genres.length > 0 ? genres : null,
-            search: mediaTitle || null
+            search: mediaTitle
         };
 
         // Se filtran aquellas variables que sean null o undefined
@@ -58,7 +64,7 @@ function BrowserBar({ onSubmit }) {
     return (
         <section className="search">
             <section className="search-bar">
-                <SearchBar onSubmit={handleMediaTitle} />
+                <SearchBar onSubmit={handleMediaTitle} onEnterSubmit={handleEnterSubmit}/>
                 <button className="search-button" onClick={handleSubmit}>
                     <SearchOutlinedIcon fontSize="small" />
                 </button>

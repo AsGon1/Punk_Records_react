@@ -35,6 +35,10 @@ function MangaList({ query, variables }) {
         handleLoadMangas();
     }, [variables, currentPage])
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [variables.search])
+
     const handleLoadMangas = async () => {
         const variables = getVariables()
         console.log(variables)
@@ -60,12 +64,11 @@ function MangaList({ query, variables }) {
 
                 </section>
 
-                {pageInfo.hasNextPage && (
-                    <section className="pagination">
-                        <Pagination count={pageInfo.lastPage} page={currentPage} onChange={handlePageChange}
-                            boundaryCount={2} showFirstButton showLastButton size="large" />
-                    </section>
-                )}
+                <section className="pagination">
+                    <Pagination count={pageInfo.lastPage} page={currentPage} onChange={handlePageChange}
+                        boundaryCount={2} showFirstButton showLastButton size="large" />
+                </section>
+
             </section>
 
         </>

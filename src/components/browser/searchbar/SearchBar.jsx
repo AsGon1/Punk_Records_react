@@ -2,10 +2,18 @@ import { useState, useEffect } from "react";
 
 import './SearchBar.css'
 
-function SearchBar({ onSubmit }) {
+function SearchBar({ onSubmit, onEnterSubmit }) {
 
     const handleInputChange = (e) => {
         onSubmit(e.target.value);
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            console.log("Enter")
+            console.log(e.target.value)
+            onEnterSubmit(true)
+        }
     };
 
     return (
@@ -13,6 +21,7 @@ function SearchBar({ onSubmit }) {
             type="text"
             placeholder="Search..."
             onChange={handleInputChange}
+            onKeyDown={handleKeyPress}
             className="search-input"
         />
     );
