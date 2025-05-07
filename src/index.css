@@ -112,3 +112,17 @@ h3 {
   font-family: var(--main-font);
   font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    header {
+        height: 3em;
+    }
+
+    main {
+        margin-top: 3em;
+    }
+}

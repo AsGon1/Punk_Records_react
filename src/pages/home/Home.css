@@ -23,3 +23,17 @@ main {
     width: 100vw;
     background-color: var(--main-color-60);
 }
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    header {
+        height: 3em;
+    }
+
+    main {
+        margin-top: 0;
+    }
+}

@@ -9,11 +9,10 @@ import './Home.css'
 function Home() {
     return (
         <>
-            <main>
-                <BrowserBar/>
-                <Top10Mangas/>
-                <Top10Animes/>
-            </main>
+            <BrowserBar/>
+            <Top10Mangas/>
+            <Top10Animes/>
+
         </>
     )
 }

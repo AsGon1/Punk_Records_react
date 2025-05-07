@@ -12,13 +12,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import './Navbar.css';
 
 
-function Navbar({userAvatar}) {
+function Navbar({ userAvatar }) {
 
     // Estados
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false); // Estado que nos dice si burger menu esta abierto o no
     const [isUserMenuOpened, setIsUserMenuOpened] = useState(false); // Estado que nos dice si el menu desplegable del usuario está abierto o no
 
-    const {route,onRouteChange} = useContext(RouteContext);
+    const { route, onRouteChange } = useContext(RouteContext);
 
     /* const handleLogout = ()=>{
         removeToken();
@@ -34,8 +34,8 @@ function Navbar({userAvatar}) {
             <div className="menu__logo">
                 <NavLink className="menu__logo-link" to="/home">PUNK RECORDS</NavLink>
             </div>
-            <div className={"menu__burger" + (isBurgerMenuOpened ? "active" : "")}>
-                <ul className="menu__burger-links" id="nav-apartados">
+            <div className={"menu__burger"}>
+                <ul className={(isBurgerMenuOpened ? "menu__burger-links-active" : "menu__burger-links")} id="nav-apartados">
                     <li className="menu__burger-link">
                         <NavLink to="/home">HOME</NavLink>
                     </li>
@@ -47,7 +47,7 @@ function Navbar({userAvatar}) {
                             {userAvatar ? (
                                 <img src={userAvatar} alt="user avatar" />
                             ) : (
-                                <AccountCircleIcon fontSize="large" />
+                                <AccountCircleIcon fontSize="medium" />
                             )}
                         </div>
                     </li>
@@ -55,30 +55,41 @@ function Navbar({userAvatar}) {
                         <div className="options-popup">
                             <div className="options-container">
                                 <ul className="options-user">
-                                    <li>Register</li>
+                                    <li className="menu__burger-link">
+                                        <NavLink to="/register">Register</NavLink>
+                                    </li>
                                     {!userAvatar ? (
-                                        <li>
-                                            <button onClick={() => onRouteChange("login")}>Login</button>
+                                        <li className="menu__burger-link">
+                                            <NavLink to="/login">Login</NavLink>
                                         </li>
-                                    ) : (
-                                        <li onClick={handleLogout}>
-                                            Logout
-                                        </li>
-                                    )}
+                                    ) : ((
+                                        <>
+                                            <li className="menu__burger-link">
+                                                <NavLink to="/profile">My Profile</NavLink>
+                                            </li>
+                                            <li className="menu__burger-link">
+                                                <NavLink to="/favorites">Favorites</NavLink>
+                                            </li>
+                                            <li className="menu__burger-link">
+                                                <NavLink to="/reviews">Reviews</NavLink>
+                                            </li>
+                                            <li className="menu__burger-link" onClick={handleLogout}>
+                                                Logout
+                                            </li>
+                                        </>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
                     )}
                 </ul>
 
-                <div className="menu__burger-icon" id="burger_icon">
-                    <button onClick={() => handleOpenBurgerOptions()}>
-                        {!isBurgerMenuOpened ? (
-                            <MenuRoundedIcon />
-                        ) : (
-                            <CloseIcon />
-                        )}
-                    </button>
+                <div className="menu__burger-icon" id="burger_icon" onClick={() => handleOpenBurgerOptions()}>
+                    {!isBurgerMenuOpened ? (
+                        <MenuRoundedIcon />
+                    ) : (
+                        <CloseIcon />
+                    )}
                 </div>
             </div>
 
