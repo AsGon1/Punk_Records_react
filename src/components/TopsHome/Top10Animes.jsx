@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import AnimeCard from '../anime/AnimeCard.jsx';
 import fetchData from "../../utils/api/anilistFetch.js";
 import { topTenAnime } from "../../utils/api/queries.js";
@@ -10,7 +10,6 @@ import './Top10Animes.css'
 
 const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5
     },

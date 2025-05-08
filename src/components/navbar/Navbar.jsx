@@ -55,25 +55,25 @@ function Navbar({ userAvatar }) {
                         <div className="options-popup">
                             <div className="options-container">
                                 <ul className="options-user">
-                                    <li className="menu__burger-link">
+                                    <li className="menu__user-link">
                                         <NavLink to="/register">Register</NavLink>
                                     </li>
                                     {!userAvatar ? (
-                                        <li className="menu__burger-link">
+                                        <li className="menu__user-link">
                                             <NavLink to="/login">Login</NavLink>
                                         </li>
                                     ) : ((
                                         <>
-                                            <li className="menu__burger-link">
+                                            <li className="menu__user-link">
                                                 <NavLink to="/profile">My Profile</NavLink>
                                             </li>
-                                            <li className="menu__burger-link">
+                                            <li className="menu__user-link">
                                                 <NavLink to="/favorites">Favorites</NavLink>
                                             </li>
-                                            <li className="menu__burger-link">
+                                            <li className="menu__user-link">
                                                 <NavLink to="/reviews">Reviews</NavLink>
                                             </li>
-                                            <li className="menu__burger-link" onClick={handleLogout}>
+                                            <li className="menu__user-link" onClick={handleLogout}>
                                                 Logout
                                             </li>
                                         </>

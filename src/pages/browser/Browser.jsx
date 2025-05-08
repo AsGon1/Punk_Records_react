@@ -25,22 +25,20 @@ function Browser() {
     }
     return (
         <>
-            <main>
-                <BrowserBar onSubmit={handleFilters} />
-                {searchFilters.type === "MANGA" ? (
-                    <>
-                        {searchFilters.search === "" ?
-                            <MangaList query={GET_MEDIA_BY_FILTER_NO_SEARCH} variables={searchFilters} />
-                            : <MangaList query={GET_MEDIA_BY_FILTER} variables={searchFilters} />}
-                    </>
-                ) : (
-                    <>
-                        {searchFilters.search === "" ?
-                            <AnimeList query={GET_MEDIA_BY_FILTER_NO_SEARCH} variables={searchFilters} />
-                            : <AnimeList query={GET_MEDIA_BY_FILTER} variables={searchFilters} />}
-                    </>
-                )}
-            </main>
+            <BrowserBar onSubmit={handleFilters} />
+            {searchFilters.type === "MANGA" ? (
+                <>
+                    {searchFilters.search === "" ?
+                        <MangaList query={GET_MEDIA_BY_FILTER_NO_SEARCH} variables={searchFilters} />
+                        : <MangaList query={GET_MEDIA_BY_FILTER} variables={searchFilters} />}
+                </>
+            ) : (
+                <>
+                    {searchFilters.search === "" ?
+                        <AnimeList query={GET_MEDIA_BY_FILTER_NO_SEARCH} variables={searchFilters} />
+                        : <AnimeList query={GET_MEDIA_BY_FILTER} variables={searchFilters} />}
+                </>
+            )}
         </>
     )
 }

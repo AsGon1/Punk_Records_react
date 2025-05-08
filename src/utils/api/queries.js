@@ -250,6 +250,47 @@ const GET_MEDIA_BY_FILTER_NO_SEARCH = `
     }
 `;
 
+const GET_ANIME_UPCOMING_SEASON = `
+    query Page(
+        $page: Int
+        $perPage: Int
+        $type: MediaType
+        $status: MediaStatus
+        $season: MediaSeason
+        $seasonYear: Int
+        $sort: [MediaSort]
+    ) {
+        Page(page: $page, perPage: $perPage) {
+            media(
+                type: $type
+                status: $status
+                season: $season
+                seasonYear: $seasonYear
+                sort: $sort
+            ) {
+                id
+                title {
+                    romaji
+                    english
+                    native
+                }
+                format
+                status
+                startDate {
+                    day
+                    month
+                    year
+                }
+                coverImage {
+                    large
+                }
+                description
+                genres
+            }
+        }
+    }
+`;
+
 export {
     mangaByTitle,
     animeByTitle,
@@ -258,6 +299,6 @@ export {
     topTenManga,
     topTenAnime,
     GET_MEDIA_BY_FILTER,
-    GET_MEDIA_BY_FILTER_NO_SEARCH
-
+    GET_MEDIA_BY_FILTER_NO_SEARCH,
+    GET_ANIME_UPCOMING_SEASON
 }
