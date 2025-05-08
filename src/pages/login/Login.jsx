@@ -1,5 +1,10 @@
-import { useState,useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/authContext";
+
+import { NavLink } from 'react-router-dom';
+import RouteContext from '../../context/routeContext';
+
+import './Login.css'
 
 function Login () {
 
@@ -10,6 +15,7 @@ function Login () {
     });
     
     const {onLogin} = useContext(AuthContext);
+    const { route, onRouteChange } = useContext(RouteContext);
     
     const handleUserPassword = (e) =>{
         const newPassword = e.target.value;
@@ -34,10 +40,11 @@ function Login () {
 
     return (
         <section className="login">
+            
             <h1>Login</h1>
 
-            <p className="error">{error}</p>
-
+            {error &&  <p className="error">{error}</p> }
+            
             <form className="login__form" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" id= "email" value={userData.email} onChange={handleUserEmail} />

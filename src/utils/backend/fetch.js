@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3003/api";
+const BASE_URL = "http://localhost:3010/api";
 
 async function fetchData(route,method="GET",data=null){
     const url = BASE_URL + route;

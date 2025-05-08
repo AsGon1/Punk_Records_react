@@ -1,3 +1,15 @@
+.login {
+    width: 100vw;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--second-font);
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
 .login .login__form {
     border-radius: 20px;
     color: black;
@@ -13,12 +25,24 @@
     max-width: 700px;
 }
 
-.login h1, .login p {
+.login p {
     text-align: center;
+    padding: .5em 1em;
 }
 
 .login h1 {
     margin: 0%;
+    text-align: center;
+    padding: .5em 1em;
+}
+
+.login label {
+    margin: 0%;
+    text-align: center;
+
+    font-family: var(--second-font);
+    font-size: 1em;
+    color: black;
 }
 
 .login .login__form input {
@@ -56,10 +80,15 @@
 
     display: flex;
     flex-flow: column;
-    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .login a {
+
+    width: 100%;
+    min-width: 95px;
+    max-width: 95px;
 
     display: flex;
     padding: .5em 1em;
@@ -76,10 +105,6 @@
     font-size: 1.2em;
 
     transition: all .3s ease;
-
-    width: 100%;
-    min-width: 200px;
-    max-width: 200px;
 }
 
 .login .login__form button:hover, .login a:hover {

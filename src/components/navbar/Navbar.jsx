@@ -35,7 +35,7 @@ function Navbar({ userAvatar }) {
                 <NavLink className="menu__logo-link" to="/home">PUNK RECORDS</NavLink>
             </div>
             <div className={"menu__burger"}>
-                <ul className={(isBurgerMenuOpened ? "menu__burger-links-active" : "menu__burger-links")} id="nav-apartados">
+                <ul className={"menu__burger-links " + (isBurgerMenuOpened ? "active" : "")} id="nav-apartados">
                     <li className="menu__burger-link">
                         <NavLink to="/home">HOME</NavLink>
                     </li>
