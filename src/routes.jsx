@@ -3,6 +3,9 @@ import Root from './pages/root/Root';
 import Home from './pages/home/Home'
 import Browser from './pages/browser/Browser'
 import Login from './pages/login/Login'
+import MediaDetails from './pages/mediaDetails/MediaDetails';
+
+import {getMediaById} from './utils/api/functions'
 
 const router  = createBrowserRouter([
     {
@@ -20,6 +23,11 @@ const router  = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login />
+            },
+            {
+                path: "/media/:media_id",
+                element: <MediaDetails />,
+                loader: ({params}) => getMediaById(params.media_id)
             }
         ]
     }

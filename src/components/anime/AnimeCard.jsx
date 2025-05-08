@@ -8,8 +8,14 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 
 import './AnimeCard.css';
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
-function AnimeCard ({anime, isFav = false, isFinished = false}){
+function AnimeCard ({anime}){
+
+    // Estado
+    const [isFav, setIsFav] = useState(false);
+    const [isFinished, setIsFinished] = useState(false);
 
     return(
         <article className="anime card">
@@ -46,7 +52,7 @@ function AnimeCard ({anime, isFav = false, isFinished = false}){
                     </li>
 
                     <li className="attribute description" >
-                        {anime.description}
+                        <p>{anime.description}</p>
                     </li>
 
                 </ul>
@@ -61,9 +67,9 @@ function AnimeCard ({anime, isFav = false, isFinished = false}){
                 <button className='viewedButton'>
                     {!isFinished? <VisibilityOutlinedIcon fontSize='small'/> : <VisibilityIcon fontSize='small'/> }
                 </button>
-                <button className='infoButton'>
+                <NavLink className='infoButton' to={"/media/" + anime.id}>
                     <InfoIcon fontSize='small'/>
-                </button>
+                </NavLink>
 
             </section>
 

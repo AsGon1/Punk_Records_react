@@ -9,17 +9,24 @@ import InfoIcon from '@mui/icons-material/Info';
 
 import './MangaCard.css';
 
-function MangaCard ({manga, isFav = false, isFinished = false}){
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
-    return(
+function MangaCard({ manga }) {
+
+    // Estado
+    const [isFav, setIsFav] = useState(false);
+    const [isFinished, setIsFinished] = useState(false);
+
+    return (
         <article className="manga card">
-            
+
             <section className="manga-image">
-                <img src={manga.coverImage.large} alt={manga.title.english? manga.title.english : manga.title.romaji}/>
+                <img src={manga.coverImage.large} alt={manga.title.english ? manga.title.english : manga.title.romaji} />
             </section>
 
             <section className="manga-data">
-                
+
                 <ul className="title-list">
                     <li className="title-english" >
                         English: {manga.title.english}
@@ -52,18 +59,18 @@ function MangaCard ({manga, isFav = false, isFinished = false}){
                 </ul>
 
                 <p className="attribute genres" >
-                        Genres: {manga.genres.join(", ")}
+                    Genres: {manga.genres.join(", ")}
                 </p>
 
                 <button className='favButton'>
-                    {!isFav? <FavoriteBorderIcon fontSize='small'/> : <FavoriteIcon fontSize='small'/> }
+                    {!isFav ? <FavoriteBorderIcon fontSize='small' /> : <FavoriteIcon fontSize='small' />}
                 </button>
                 <button className='readButton'>
-                    {!isFinished? <BookmarkBorderIcon fontSize='small'/> : <BookmarkIcon fontSize='small'/> }
+                    {!isFinished ? <BookmarkBorderIcon fontSize='small' /> : <BookmarkIcon fontSize='small' />}
                 </button>
-                <button className='infoButton'>
+                <NavLink className='infoButton' to={"/media/" + manga.id}>
                     <InfoIcon fontSize='small'/>
-                </button>
+                </NavLink>
 
             </section>
 

@@ -88,6 +88,7 @@ query ($id: Int!) {
   Page {
     media(id: $id, isAdult: false) {
         id
+        type
         title {
             romaji
             english
@@ -105,6 +106,21 @@ query ($id: Int!) {
         genres
         chapters
         volumes
+        episodes
+        duration
+        characters(sort: [ROLE, RELEVANCE, ID]) {
+            nodes {
+                image {
+                    large
+                    medium
+                    }
+                name {
+                    first
+                    last
+                    alternative
+                }
+            }
+        }
     }
   }
 }`;
@@ -165,6 +181,7 @@ let topTenAnime = `
     }
 `;
 
+// Esta Query nos permite buscar por titulo y los filtros agregados(tipo, generos y popularidad)
 const GET_MEDIA_BY_FILTER = `
     query Query(
         $search: String!
@@ -208,6 +225,7 @@ const GET_MEDIA_BY_FILTER = `
     }
 `;
 
+// Esta Query nos permite buscar los filtros agregados(tipo, generos y popularidad)
 const GET_MEDIA_BY_FILTER_NO_SEARCH = `
     query Query(
         $page: Int
@@ -250,6 +268,7 @@ const GET_MEDIA_BY_FILTER_NO_SEARCH = `
     }
 `;
 
+// Esta query nos permite buscar por temporada
 const GET_ANIME_UPCOMING_SEASON = `
     query Page(
         $page: Int
