@@ -1,0 +1,36 @@
+
+.anime-browse-section{
+    display: flex;
+    flex-flow: column;
+    gap: 1em;
+    align-items: center;
+    
+    width: 100vw;
+}
+
+.anime-list {
+    width: 100%;
+    max-width: 2000px;
+    padding: 2em 10%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1em;
+
+    font-family: var(--second-font);
+}
+
+.pagination {
+    padding: 2em 10%;
+}
+
+.pagination button {
+    background-color: var(--main-color-60);
+    border-radius: 2px;
+    font-family: var(--second-font);
+}
+
+.pagination .css-16mmgyz-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: var(--main-color-30);
+    color: var(--main-color-10);
+}
