@@ -3,18 +3,22 @@
     max-width: 1800px;
     display: flex;
     flex-flow: column;
+    justify-content: center;
+    align-items: center;
     padding: 1em 10%;
     gap: 2em;
 }
 
 .media-data {
-    
+    width: 100%;
+    max-width: 800px;
+
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: center;
 
     gap: 1em;
 
-    width: 100%;
 }
 
 .media-data .media-data-img {
@@ -66,10 +70,10 @@
 
 .media-data .media-data-info {
     width: 100%;
-
+    
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    align-items: center;
 
     font-size: 3rem;
 

@@ -97,6 +97,7 @@ query ($id: Int!) {
         format
         status
         startDate {
+            month
             year
         }
         coverImage {

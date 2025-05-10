@@ -60,13 +60,13 @@ function MediaDetails() {
                                 Format: {media[0].format}
                             </li>
                             <li className="attribute date" >
-                                Realese Date: {media[0].startDate.year}
+                                Realese Date: {media[0].startDate.month + "/" + media[0].startDate.year}
                             </li>
                             <li className="attribute episodes" >
-                                Episodes: {media[0].episodes}
+                                Episodes: {media[0].episodes === null? "N/A" : media[0].episodes}
                             </li>
                             <li className="attribute duration" >
-                                Average Duration: {media[0].duration}
+                                Average Duration: {media[0].duration === null? "N/A" : media[0].duration}
                             </li>
                         </ul>
                     ) : (
@@ -75,7 +75,7 @@ function MediaDetails() {
                                 Format: {media[0].format}
                             </li>
                             <li className="attribute date" >
-                                Realese Date: {media[0].startDate.year}
+                                Realese Date: {media[0].startDate.month + "/" + media[0].startDate.year}
                             </li>
                             <li className="attribute episodes" >
                                 Chapters: {media[0].chapters === null? "N/A" : media[0].chapters}
