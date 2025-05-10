@@ -100,7 +100,7 @@ query ($id: Int!) {
             year
         }
         coverImage {
-            large
+            extraLarge
         }
         description
         genres

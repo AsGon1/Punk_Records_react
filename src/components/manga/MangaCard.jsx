@@ -7,6 +7,8 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 import InfoIcon from '@mui/icons-material/Info';
 
+import parse from "html-react-parser";
+
 import './MangaCard.css';
 
 import { NavLink } from 'react-router-dom';
@@ -53,7 +55,7 @@ function MangaCard({ manga }) {
                     </li>
 
                     <li className="attribute description" >
-                        {manga.description}
+                        {parse(manga.description)}
                     </li>
 
                 </ul>

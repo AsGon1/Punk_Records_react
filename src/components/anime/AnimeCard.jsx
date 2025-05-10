@@ -7,6 +7,8 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 import InfoIcon from '@mui/icons-material/Info';
 
+import parse from "html-react-parser";
+
 import './AnimeCard.css';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
@@ -52,7 +54,7 @@ function AnimeCard ({anime}){
                     </li>
 
                     <li className="attribute description" >
-                        <p>{anime.description}</p>
+                        <p>{parse(anime.description)}</p>
                     </li>
 
                 </ul>
