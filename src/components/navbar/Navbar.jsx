@@ -1,9 +1,10 @@
-// import { removeToken } from '../../utils/localStorage';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import RouteContext from '../../context/routeContext';
+
+import { getToken, removeToken } from '../../utils/localstorage';
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -12,18 +13,30 @@ import CloseIcon from '@mui/icons-material/Close';
 import './Navbar.css';
 
 
-function Navbar({ userAvatar }) {
+function Navbar() {
 
     // Estados
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false); // Estado que nos dice si burger menu esta abierto o no
     const [isUserMenuOpened, setIsUserMenuOpened] = useState(false); // Estado que nos dice si el menu desplegable del usuario está abierto o no
+    const [isLogged, setIsLogged] = useState(false); // Estado que guarda si el usuario esta loggeado o no
 
     const { route, onRouteChange } = useContext(RouteContext);
 
-    /* const handleLogout = ()=>{
+    useEffect(()=>{
+        handleLogged();
+    },[])
+
+    const handleLogout = ()=>{
         removeToken();
         onRouteChange("home");
-    } */
+    }
+
+    const handleLogged = ()=>{
+        const token = getToken();
+        if (token !== null){
+            setIsLogged(true);
+        }
+    }
 
     const handleOpenBurgerOptions = () => {
         setIsBurgerMenuOpened(!isBurgerMenuOpened);
@@ -44,11 +57,7 @@ function Navbar({ userAvatar }) {
                     </li>
                     <li className="menu__burger-link">
                         <div className="user__avatar" onClick={() => setIsUserMenuOpened(!isUserMenuOpened)}>
-                            {userAvatar ? (
-                                <img src={userAvatar} alt="user avatar" />
-                            ) : (
-                                <AccountCircleIcon fontSize="medium" />
-                            )}
+                            <AccountCircleIcon fontSize="medium" />
                         </div>
                     </li>
                     {isUserMenuOpened && (
@@ -58,7 +67,7 @@ function Navbar({ userAvatar }) {
                                     <li className="menu__user-link">
                                         <NavLink to="/register">Register</NavLink>
                                     </li>
-                                    {!userAvatar ? (
+                                    {!isLogged ? (
                                         <li className="menu__user-link">
                                             <NavLink to="/login">Login</NavLink>
                                         </li>

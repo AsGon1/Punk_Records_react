@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer"
+import Footer from "../../components/footer/Footer";
+import { AuthProvider } from "../../context/authContext";
 
 function Root() {
     return (
-        <section>
+        <AuthProvider>
             <header>
                 <Navbar />
             </header>
@@ -14,7 +15,7 @@ function Root() {
             <footer>
                 <Footer/>
             </footer>
-        </section>
+        </AuthProvider>
     )
 }
 

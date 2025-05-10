@@ -28,6 +28,21 @@
 .login p {
     text-align: center;
     padding: .5em 1em;
+
+    font-family: var(--second-font);
+    font-size: 1em;
+
+    color: red;
+}
+
+.login .error {
+    text-align: center;
+    padding: .5em 1em;
+
+    font-family: var(--second-font);
+    font-size: 2em;
+
+    color: red;
 }
 
 .login h1 {

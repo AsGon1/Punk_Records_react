@@ -152,4 +152,9 @@
         color: black;
     }
 
+    #menu .menu__burger .menu__burger-links .menu__user-link:hover {
+        background-color: var(--main-color-30);
+        color: var(--main-color-10);
+    }
+
 }
