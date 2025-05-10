@@ -22,7 +22,7 @@ const AuthProvider = ({children}) => {
         } else {
             setUserData(result.user);
             saveToken(result.token);
-            navigate("/")
+            navigate("/home")
             return null;
         }
     }
@@ -30,7 +30,7 @@ const AuthProvider = ({children}) => {
     const handleLogout = () => {
         removeToken();
         setUserData(null);
-        navigate("/");
+        navigate("/home");
     }
 
     return (

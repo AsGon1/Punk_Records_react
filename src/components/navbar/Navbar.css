@@ -57,7 +57,8 @@
 
 #menu .options-popup {
     position: absolute;
-    transform: translate( 120px, 95%);
+    top: 5em;
+    right: 1em;
     width: 120px;
     max-height: 400px;
     overflow-y: scroll;
@@ -144,7 +145,8 @@
 
     #menu .options-popup {
 
-        transform: translate(40px, 80%);
+        top: 2.5em;
+        right: 10em;
 
     }
 

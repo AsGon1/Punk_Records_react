@@ -10,7 +10,6 @@ async function fetchData(route,method="GET",data=null){
         headers: {
             "Content-Type" : "application/json"
         },
-        credentials: "include"
     };
 
     if(token){

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import RouteContext from '../../context/routeContext';
+import { AuthContext } from "../../context/authContext";
 
 import { getToken, removeToken } from '../../utils/localstorage';
 
@@ -18,25 +19,9 @@ function Navbar() {
     // Estados
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false); // Estado que nos dice si burger menu esta abierto o no
     const [isUserMenuOpened, setIsUserMenuOpened] = useState(false); // Estado que nos dice si el menu desplegable del usuario está abierto o no
-    const [isLogged, setIsLogged] = useState(false); // Estado que guarda si el usuario esta loggeado o no
 
     const { route, onRouteChange } = useContext(RouteContext);
-
-    useEffect(()=>{
-        handleLogged();
-    },[])
-
-    const handleLogout = ()=>{
-        removeToken();
-        onRouteChange("home");
-    }
-
-    const handleLogged = ()=>{
-        const token = getToken();
-        if (token !== null){
-            setIsLogged(true);
-        }
-    }
+    const { onLogout, userData } = useContext(AuthContext);
 
     const handleOpenBurgerOptions = () => {
         setIsBurgerMenuOpened(!isBurgerMenuOpened);
@@ -67,7 +52,7 @@ function Navbar() {
                                     <li className="menu__user-link">
                                         <NavLink to="/register">Register</NavLink>
                                     </li>
-                                    {!isLogged ? (
+                                    {userData === null? (
                                         <li className="menu__user-link">
                                             <NavLink to="/login">Login</NavLink>
                                         </li>
@@ -82,7 +67,7 @@ function Navbar() {
                                             <li className="menu__user-link">
                                                 <NavLink to="/reviews">Reviews</NavLink>
                                             </li>
-                                            <li className="menu__user-link" onClick={handleLogout}>
+                                            <li className="menu__user-link" onClick={onLogout}>
                                                 Logout
                                             </li>
                                         </>
