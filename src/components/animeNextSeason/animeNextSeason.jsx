@@ -55,8 +55,8 @@ function AnimeNextSeason({ season, seasonYear }) {
 
         <section className="upcoming-season">
 
-            <h1>{season} SEASON</h1>
-
+            <h1>NEXT SEASON: {season}</h1>
+            
             <Carousel responsive={responsive}>
                 {animes.map(anime => {
                     return <AnimeCard anime={anime} key={anime.id} />
