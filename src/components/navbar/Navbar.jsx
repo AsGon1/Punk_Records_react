@@ -50,13 +50,15 @@ function Navbar() {
                         <div className="options-popup">
                             <div className="options-container">
                                 <ul className="options-user">
-                                    <li className="menu__user-link">
-                                        <NavLink to="/register">Register</NavLink>
-                                    </li>
-                                    {userData === null? (
-                                        <li className="menu__user-link">
-                                            <NavLink to="/login">Login</NavLink>
-                                        </li>
+                                    {userData === null ? (
+                                        <>
+                                            <li className="menu__user-link">
+                                                <NavLink to="/register">Register</NavLink>
+                                            </li>
+                                            <li className="menu__user-link">
+                                                <NavLink to="/login">Login</NavLink>
+                                            </li>
+                                        </>
                                     ) : ((
                                         <>
                                             <li className="menu__user-link">
