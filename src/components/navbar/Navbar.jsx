@@ -59,9 +59,6 @@ function Navbar() {
                                     ) : ((
                                         <>
                                             <li className="menu__user-link">
-                                                <NavLink to="/profile">My Profile</NavLink>
-                                            </li>
-                                            <li className="menu__user-link">
                                                 <NavLink to="/favorites">Favorites</NavLink>
                                             </li>
                                             <li className="menu__user-link">
