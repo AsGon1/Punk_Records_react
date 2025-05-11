@@ -8,7 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -147,7 +147,7 @@ function AnimeCard({ anime }) {
                     {!isFav ? <FavoriteBorderIcon fontSize='small' /> : <FavoriteIcon fontSize='small' />}
                 </button>
                 <button className='viewedButton' onClick={handleViewed}>
-                    {!isViewed ? <VisibilityOutlinedIcon fontSize='small' /> : <VisibilityIcon fontSize='small' />}
+                    {!isViewed ? <VisibilityOffOutlinedIcon fontSize='small' /> : <VisibilityIcon fontSize='small' />}
                 </button>
                 <NavLink className='infoButton' to={"/media/" + anime.id}>
                     <InfoIcon fontSize='small' />
