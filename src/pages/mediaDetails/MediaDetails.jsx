@@ -1,24 +1,106 @@
+import { getToken } from "../../utils/localstorage";
+import {
+    getFavoriteByMediaID, editFavorite, createFavorite, deleteReviewByFavoriteID, deleteFavoriteByID,
+    getReviewByFavoriteID
+} from "../../utils/backend/functions"
+
 import { useParams, useLoaderData } from "react-router-dom";
-import { useState } from 'react';
 import parse from "html-react-parser";
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from "../../context/authContext";
 
 import './MediaDetails.css'
 
 function MediaDetails() {
 
     const media = useLoaderData();
-    console.log(media[0].characters.nodes)
-    // Estado
+
+    // Estados
+    const [favData, setFavData] = useState({});
+
     const [isFav, setIsFav] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
+
+    const [isMessage, setIsMessage] = useState(false);
+
+    const token = getToken();
+
+    const { userData } = useContext(AuthContext);
+
+    useEffect(() => {
+        handleFavData();
+    }, [isMessage])
+
+    const handleFavData = async () => {
+        if (token) {
+            const data = await getFavoriteByMediaID(media[0].id);
+            console.log(data)
+            if (data !== null) {
+                setFavData(data);
+                setIsFav(true);
+                setIsFinished(data.finished);
+            }else{
+                setFavData({});
+                setIsFav(false);
+                setIsFinished(false);
+            }
+        }
+    }
+
+    // Funciones de Favoritado
+    const handleFavorite = () => {
+        if (token) {
+            if (favData.favorite_id){
+                deleteFavoriteByID(favData.favorite_id);
+            }else{
+                const data = {
+                    media_name: media[0].title.english,
+                    media_id: media[0].id,
+                    media_type: media[0].type,
+                    finished: false,
+                    user_id: userData.user_id
+                }
+
+                const newData = createFavorite(data);
+            }
+            setIsMessage(!isMessage);
+        }
+    }
+
+    const handleFinished = () => {
+        if (token) {
+            if(favData.favorite_id){
+
+                const data = {
+                    finished: !favData.finished
+                }
+
+                console.log(data);
+
+                const edition = editFavorite(favData.favorite_id, data);
+            }else{
+                const data = {
+                    media_name: media[0].title.english,
+                    media_id: media[0].id,
+                    media_type: media[0].type,
+                    finished: true,
+                    user_id: userData.user_id
+                }
+
+                const newData = createFavorite(data);
+            }
+            setIsMessage(!isMessage);
+        }
+    }
 
     return (
         <section className="media-details">
@@ -26,15 +108,15 @@ function MediaDetails() {
                 <section className="media-data-img">
                     <img src={media[0].coverImage.extraLarge} alt={media[0].title.english ? media[0].title.english : media[0].title.romaji} />
                     <section className="buttons">
-                        <button className='favButton'>
+                        <button className='favButton' onClick={handleFavorite}>
                             {!isFav ? <FavoriteBorderIcon fontSize='medium' /> : <FavoriteIcon fontSize='medium' />}
                         </button>
                         {media[0].type === "ANIME" ? (
-                            <button className='viewedButton'>
-                                {!isFinished ? <VisibilityOutlinedIcon fontSize='medium' /> : <VisibilityIcon fontSize='medium' />}
+                            <button className='viewedButton' onClick={handleFinished}>
+                                {!isFinished ? <VisibilityOffOutlinedIcon fontSize='medium' /> : <VisibilityIcon fontSize='medium' />}
                             </button>
                         ) : (
-                            <button className='readButton'>
+                            <button className='readButton' onClick={handleFinished}>
                                 {!isFinished ? <BookmarkBorderIcon fontSize='medium' /> : <BookmarkIcon fontSize='medium' />}
                             </button>
                         )}
@@ -63,10 +145,10 @@ function MediaDetails() {
                                 Realese Date: {media[0].startDate.month + "/" + media[0].startDate.year}
                             </li>
                             <li className="attribute episodes" >
-                                Episodes: {media[0].episodes === null? "N/A" : media[0].episodes}
+                                Episodes: {media[0].episodes === null ? "N/A" : media[0].episodes}
                             </li>
                             <li className="attribute duration" >
-                                Average Duration: {media[0].duration === null? "N/A" : media[0].duration}
+                                Average Duration: {media[0].duration === null ? "N/A" : media[0].duration}
                             </li>
                         </ul>
                     ) : (
@@ -78,10 +160,10 @@ function MediaDetails() {
                                 Realese Date: {media[0].startDate.month + "/" + media[0].startDate.year}
                             </li>
                             <li className="attribute episodes" >
-                                Chapters: {media[0].chapters === null? "N/A" : media[0].chapters}
+                                Chapters: {media[0].chapters === null ? "N/A" : media[0].chapters}
                             </li>
                             <li className="attribute duration" >
-                                Volumes: {media[0].volumes === null? "N/A" : media[0].volumes}
+                                Volumes: {media[0].volumes === null ? "N/A" : media[0].volumes}
                             </li>
                         </ul>
                     )}

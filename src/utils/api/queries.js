@@ -4,6 +4,7 @@ let mangaByTitle = `
       Page {
         media(search: $search, isAdult: false, type: MANGA) {
             id
+            type
             title {
                 romaji
                 english
@@ -33,6 +34,7 @@ let animeByTitle = `
       Page {
         media(search: $search, isAdult: false, type: ANIME) {
             id
+            type
             title {
                 romaji
                 english
@@ -132,6 +134,7 @@ let topTenManga = `
         Page(page: 1, perPage: 10) {
             media(sort: POPULARITY_DESC, type: MANGA) {
                 id
+                type
                 title {
                     romaji
                     english
@@ -160,6 +163,7 @@ let topTenAnime = `
         Page(page: 1, perPage: 10) {
             media(sort: POPULARITY_DESC, type: ANIME) {
                 id
+                type
                 title {
                     romaji
                     english
@@ -195,6 +199,7 @@ const GET_MEDIA_BY_FILTER = `
         Page(page: $page, perPage: $perPage) {
             media(search: $search, isAdult: false, type: $type, sort: $sort, genre_in: $genreIn) {
                 id
+                type
                 title {
                     romaji
                     english
@@ -238,6 +243,7 @@ const GET_MEDIA_BY_FILTER_NO_SEARCH = `
         Page(page: $page, perPage: $perPage) {
             media(isAdult: false, type: $type, sort: $sort, genre_in: $genreIn) {
                 id
+                type
                 title {
                     romaji
                     english
@@ -289,6 +295,7 @@ const GET_ANIME_UPCOMING_SEASON = `
                 sort: $sort
             ) {
                 id
+                type
                 title {
                     romaji
                     english

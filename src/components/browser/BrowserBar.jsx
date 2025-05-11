@@ -34,6 +34,7 @@ function BrowserBar({ onSubmit }) {
         setSort(filterSort);
     }
 
+    // Funciones que manejan la busqueda
     const handleSubmit = () => {
         const variables = getFilterVariables();
         console.log(variables);

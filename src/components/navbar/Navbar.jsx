@@ -1,9 +1,11 @@
-// import { removeToken } from '../../utils/localStorage';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import RouteContext from '../../context/routeContext';
+import { AuthContext } from "../../context/authContext";
+
+import { getToken, removeToken } from '../../utils/localstorage';
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -12,20 +14,17 @@ import CloseIcon from '@mui/icons-material/Close';
 import './Navbar.css';
 
 
-function Navbar({ userAvatar }) {
+function Navbar() {
 
     // Estados
     const [isBurgerMenuOpened, setIsBurgerMenuOpened] = useState(false); // Estado que nos dice si burger menu esta abierto o no
     const [isUserMenuOpened, setIsUserMenuOpened] = useState(false); // Estado que nos dice si el menu desplegable del usuario está abierto o no
 
     const { route, onRouteChange } = useContext(RouteContext);
-
-    /* const handleLogout = ()=>{
-        removeToken();
-        onRouteChange("home");
-    } */
+    const { onLogout, userData } = useContext(AuthContext);
 
     const handleOpenBurgerOptions = () => {
+        console.log(userData);
         setIsBurgerMenuOpened(!isBurgerMenuOpened);
     };
 
@@ -44,36 +43,31 @@ function Navbar({ userAvatar }) {
                     </li>
                     <li className="menu__burger-link">
                         <div className="user__avatar" onClick={() => setIsUserMenuOpened(!isUserMenuOpened)}>
-                            {userAvatar ? (
-                                <img src={userAvatar} alt="user avatar" />
-                            ) : (
-                                <AccountCircleIcon fontSize="medium" />
-                            )}
+                            <AccountCircleIcon fontSize="medium" />
                         </div>
                     </li>
                     {isUserMenuOpened && (
                         <div className="options-popup">
                             <div className="options-container">
                                 <ul className="options-user">
-                                    <li className="menu__user-link">
-                                        <NavLink to="/register">Register</NavLink>
-                                    </li>
-                                    {!userAvatar ? (
-                                        <li className="menu__user-link">
-                                            <NavLink to="/login">Login</NavLink>
-                                        </li>
-                                    ) : ((
+                                    {userData === null ? (
                                         <>
                                             <li className="menu__user-link">
-                                                <NavLink to="/profile">My Profile</NavLink>
+                                                <NavLink to="/register">Register</NavLink>
                                             </li>
+                                            <li className="menu__user-link">
+                                                <NavLink to="/login">Login</NavLink>
+                                            </li>
+                                        </>
+                                    ) : ((
+                                        <>
                                             <li className="menu__user-link">
                                                 <NavLink to="/favorites">Favorites</NavLink>
                                             </li>
                                             <li className="menu__user-link">
                                                 <NavLink to="/reviews">Reviews</NavLink>
                                             </li>
-                                            <li className="menu__user-link" onClick={handleLogout}>
+                                            <li className="menu__user-link" onClick={onLogout}>
                                                 Logout
                                             </li>
                                         </>

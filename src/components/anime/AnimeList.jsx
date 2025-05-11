@@ -1,4 +1,4 @@
-import { useState, useEffect, useActionState } from "react";
+import { useState, useEffect } from "react";
 import AnimeCard from "./AnimeCard";
 import fetchData from "../../utils/api/anilistFetch.js";
 

@@ -1,3 +1,9 @@
+import { getToken } from "../../utils/localstorage";
+
+import {
+    getFavoriteByMediaID, editFavorite, createFavorite, deleteReviewByFavoriteID, deleteFavoriteByID,
+    getReviewByFavoriteID
+} from "../../utils/backend/functions"
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -12,13 +18,88 @@ import parse from "html-react-parser";
 import './MangaCard.css';
 
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from "../../context/authContext";
 
 function MangaCard({ manga }) {
 
-    // Estado
+    // Estados
+    const [favData, setFavData] = useState({});
+
     const [isFav, setIsFav] = useState(false);
-    const [isFinished, setIsFinished] = useState(false);
+    const [isRead, setIsRead] = useState(false);
+
+    const [isMessage, setIsMessage] = useState(false);
+
+    const token = getToken();
+
+    const {userData} = useContext(AuthContext);
+
+    useEffect(() => {
+        handleFavData();
+    }, [isMessage])
+
+    const handleFavData = async () => {
+        if (token) {
+            const data = await getFavoriteByMediaID(manga.id);
+            console.log(data)
+            if (data !== null) {
+                setFavData(data);
+                setIsFav(true);
+                setIsRead(data.finished);
+            }else{
+                setFavData({});
+                setIsFav(false);
+                setIsRead(false);
+            }
+        }
+    }
+
+// Funciones de Favoritado
+const handleFavorite = () => {
+    if (token) {
+        if (favData.favorite_id){
+            deleteFavoriteByID(favData.favorite_id);
+        }else{
+            const data = {
+                media_name: manga.title.english,
+                media_id: manga.id,
+                media_type: manga.type,
+                finished: false,
+                user_id: userData.user_id
+            }
+
+            const newData = createFavorite(data);
+        }
+        setIsMessage(!isMessage);
+    }
+}
+
+const handleRead = () => {
+    if (token) {
+        if(favData.favorite_id){
+
+            const data = {
+                finished: !favData.finished
+            }
+
+            console.log(data);
+
+            const edition = editFavorite(favData.favorite_id, data);
+        }else{
+            const data = {
+                media_name: manga.title.english,
+                media_id: manga.id,
+                media_type: manga.type,
+                finished: true,
+                user_id: userData.user_id
+            }
+
+            const newData = createFavorite(data);
+        }
+        setIsMessage(!isMessage);
+    }
+}
 
     return (
         <article className="manga card">
@@ -64,11 +145,11 @@ function MangaCard({ manga }) {
                     Genres: {manga.genres.join(", ")}
                 </p>
 
-                <button className='favButton'>
+                <button className='favButton' onClick={handleFavorite}>
                     {!isFav ? <FavoriteBorderIcon fontSize='small' /> : <FavoriteIcon fontSize='small' />}
                 </button>
-                <button className='readButton'>
-                    {!isFinished ? <BookmarkBorderIcon fontSize='small' /> : <BookmarkIcon fontSize='small' />}
+                <button className='readButton' onClick={handleRead}>
+                    {!isRead ? <BookmarkBorderIcon fontSize='small' /> : <BookmarkIcon fontSize='small' />}
                 </button>
                 <NavLink className='infoButton' to={"/media/" + manga.id}>
                     <InfoIcon fontSize='small'/>

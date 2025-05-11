@@ -33,6 +33,11 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
     display: block;
 }
 
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 body {
     background-color: var(--main-color-60);
 
@@ -77,6 +82,8 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: center;
+
+    margin-bottom: 90px;
 }
 
 /*END RESET*/

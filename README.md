@@ -1,12 +1,33 @@
-# React + Vite
+# Punk_Records Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En **Punk Records** puedes encontrar una gran variedad de entretenimiento para los amantes del manga y el anime. Gracias al uso de la API de Anilist se puede encontar información de miles de mangas y animes. Aunque no solo sirve para su busqueda, gracias a la funcion de favoritos puedes gestionar la lista de mangas y animes que hayas visto y leido, asi como aquellos que planeas ver y leer.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Tops de los mas visto y leido en la página principal, así como los animes de la siguiente temporada**
+- **Buscador de información (Mangas y Animes)**
+- **Sección de favoritos**
+- **Gestión de los mangas leidos y no leidos**
+- **Gestión de animes vistos y no vistos**
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **HTML**: Estructuración de las paginas de la web
+- **CSS**: Estilo para la interfaz de usuario
+- **JavaScript**: Obtención de la información de la API y programación de las funcionalidades de la web
+- **API Anilist**: Provee de la información utilizada (datos e imágenes)
+- **Graph QL**: Lenguaje para la obtención de información de la API
+- **React**: Framework utilizado para la construcción del frontend
+
+
+## Getting Started
+
+Para hacer funcionar este proyecto solo necesitas un Navegador Web y un Editor de texto (por ejemplo, VS Code). Gracias al uso de GRaph QL no es necesaria ninguna APIkey para solicitar la información.
+
+Las Queries utilizadas en el proyecto se encuentran en la carpeta de utils, pero si es necesario aprender como realizarlas puedes visitar la página web de Anilist, donde se explica como realizar las peticiones.
+
+Link: [https://docs.anilist.co/guide/introduction](https://docs.anilist.co/guide/introduction)
+
+Este proyecto funciona en conjunto con el proyecto de backend que encontraras en el siguiente enlace.
+
+Link: [https://github.com/AsGon1/Punk_Records_Backend](https://github.com/AsGon1/Punk_Records_Backend)

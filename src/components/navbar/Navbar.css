@@ -31,6 +31,8 @@
     display: flex;
     flex-flow: row;
     gap: .5em;
+
+    align-items: center;
 }
 
 #menu .menu__burger .menu__burger-links .menu__burger-link {
@@ -57,7 +59,8 @@
 
 #menu .options-popup {
     position: absolute;
-    transform: translate( 120px, 95%);
+    top: 5em;
+    right: 1em;
     width: 120px;
     max-height: 400px;
     overflow-y: scroll;
@@ -144,12 +147,18 @@
 
     #menu .options-popup {
 
-        transform: translate(40px, 80%);
+        top: 2.5em;
+        right: 10em;
 
     }
 
     #menu .options-popup .options-container .options-user .menu__user-link {
         color: black;
+    }
+
+    #menu .menu__burger .menu__burger-links .menu__user-link:hover {
+        background-color: var(--main-color-30);
+        color: var(--main-color-10);
     }
 
 }

@@ -109,6 +109,13 @@
     font-size: 1rem;
 }
 
+.media-characters {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: .5em;
+}
+
 .media-characters .characters {
     width: 100%;
     max-width: 2000px;
