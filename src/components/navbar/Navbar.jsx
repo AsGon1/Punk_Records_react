@@ -24,6 +24,7 @@ function Navbar() {
     const { onLogout, userData } = useContext(AuthContext);
 
     const handleOpenBurgerOptions = () => {
+        console.log(userData);
         setIsBurgerMenuOpened(!isBurgerMenuOpened);
     };
 

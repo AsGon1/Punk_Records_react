@@ -15,7 +15,7 @@ import './MediaDetails.css'
 function MediaDetails() {
 
     const media = useLoaderData();
-    console.log(media[0].characters.nodes)
+
     // Estado
     const [isFav, setIsFav] = useState(false);
     const [isFinished, setIsFinished] = useState(false);

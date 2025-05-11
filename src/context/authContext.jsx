@@ -20,7 +20,8 @@ const AuthProvider = ({children}) => {
             removeToken();
             return result.error;
         } else {
-            setUserData(result.user);
+            result.password = "";
+            setUserData(result.result);
             saveToken(result.token);
             navigate("/home")
             return null;

@@ -41,9 +41,7 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(userData)
         const response = await createUser(userData);
-        console.log(response);
         if (response.error){
             console.log(response);
             setError(response.error);
