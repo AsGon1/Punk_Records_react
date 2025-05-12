@@ -48,7 +48,7 @@ function Top10Mangas() {
 
             <h1>TOP 10 MANGAS</h1>
 
-            <Carousel responsive={responsive}>
+            <Carousel showDots={true} responsive={responsive}>
                     {mangas.map(manga=>{
                         return <MangaCard manga={manga} key={manga.id} /> 
                     })

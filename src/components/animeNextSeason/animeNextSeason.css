@@ -43,3 +43,7 @@
     cursor:default;
     background:rgba(253, 72, 72, 0.5)
 }
+
+.react-multi-carousel-track {
+    margin-bottom: 2em;
+}
