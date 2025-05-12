@@ -11,19 +11,23 @@ import './animeNextSeason.css'
 const responsive = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
-        items: 5
+        items: 5,
+        artialVisibilityGutter: 50
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 3
+        items: 3,
+        partialVisibilityGutter: 40
     },
     tablet: {
         breakpoint: { max: 1024, min: 464 },
-        items: 2
+        items: 2,
+        artialVisibilityGutter: 30
     },
     mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1
+        items: 1,
+        artialVisibilityGutter: 30
     }
 };
 
@@ -57,7 +61,7 @@ function AnimeNextSeason({ season, seasonYear }) {
 
             <h1>NEXT SEASON: {season}</h1>
             
-            <Carousel showDots={true} responsive={responsive}>
+            <Carousel showDots={true} partialVisible={true} responsive={responsive}>
                 {animes.map(anime => {
                     return <AnimeCard anime={anime} key={anime.id} />
                 })
