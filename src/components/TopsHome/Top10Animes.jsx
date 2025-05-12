@@ -47,7 +47,7 @@ function Top10Animes() {
 
             <h1>TOP 10 ANIMES</h1>
 
-            <Carousel responsive={responsive}>
+            <Carousel showDots={true} responsive={responsive}>
                 {animes.map(anime=>{
                     return <AnimeCard anime={anime} key={anime.id} /> 
                 })

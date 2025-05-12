@@ -118,7 +118,6 @@
 
 .media-characters .characters {
     width: 100%;
-    max-width: 2000px;
     padding: 2em;
 
     display: grid;
