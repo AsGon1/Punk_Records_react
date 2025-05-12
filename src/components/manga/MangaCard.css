@@ -1,0 +1,174 @@
+.card {
+    max-width: 400px;
+    height: 600px;
+    overflow: hidden;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1em;
+    gap: 1em;
+
+    background-color: var(--main-color-10);
+    border: 2px solid var(--main-color-30);
+    border-radius: 20px;
+
+    position: relative;
+}
+
+.card .manga-data {
+    display: flex;
+    gap: 0.5em;
+    flex-flow: column;
+}
+
+.card img{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    transition: all 0.5s ease;
+}
+
+.card .title-list {
+    text-align: center;
+}
+
+.card:hover img{
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+.card h4 {
+    width: 100%;
+    text-align: center;
+    color: var(--main-color-30);
+}
+
+.card:hover h4 {
+    display: none;
+}
+
+.card:hover .title-list {
+    display: flex;
+    flex-flow: column;
+    gap: 0.3em;
+    font-size: 14px;
+}
+
+.card .manga-attributes {
+    width: 100%;
+    display: none;
+}
+
+.card:hover .manga-attributes {
+    display: flex;
+    flex-flow: column;
+    gap: .5em;
+    font-size: 14px;
+}
+
+.card .manga-attributes .description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    overflow: hidden;
+}
+
+.card .genres {
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 1em;
+
+    width: 100%;
+}
+
+.card:hover .genres {
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 1em;
+
+    width: 100%;
+}
+
+.card .favButton {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--main-color-30);
+    color: var(--main-color-10);
+    padding: 1em;
+    border: 2px solid transparent;
+    border-radius: 100%;
+
+    transition: all .3s ease;
+}
+
+.card .readButton {
+    position: absolute;
+    top: 5em;
+    right: 1em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--main-color-30);
+    color: var(--main-color-10);
+    padding: 1em;
+    border: 2px solid transparent;
+    border-radius: 100%;
+
+    transition: all .3s ease;
+}
+
+.card .infoButton {
+    position: absolute;
+    top: 7.5em;
+    right: .9em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--main-color-30);
+    color: var(--main-color-10);
+    padding: .8em;
+    border: 2px solid transparent;
+    border-radius: 100%;
+
+    transition: all .3s ease;
+}
+
+.card button:hover {
+    border: 2px solid var(--main-color-30);
+    background-color: var(--main-color-10);
+    color: var(--main-color-30);
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin: 0 10%;
+        gap: .2em;
+    }
+
+    .card h3 {
+        font-size: .3rem;
+    }
+
+    .card:hover .manga-attributes .description {
+        display: none;
+    }
+}

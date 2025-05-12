@@ -1,0 +1,83 @@
+.selector {
+    background-color: var(--main-color-10);
+    padding: 5px;
+    box-sizing: content-box;
+    border: 2px solid var(--main-color-30);
+    border-radius: 20px;
+    width: 250px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.selector .selector-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    font-family: var(--second-font);
+    font-size: 1rem;
+}
+
+.selector .selector-container .placeholder {
+    color: black;
+    font-family: var(--second-font);
+    font-size: 1rem;
+}
+
+.selector .selector-container .option-selected-container {
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+    gap: 5px;
+    align-items: center;
+    height: 100%;
+}
+
+
+.selector .option-selected-container .option-item {
+    background-color: var(--main-color-10);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.selector .options-popup {
+    position: absolute;
+    transform: translateY(10px);
+    width: 200px;
+    max-height: 400px;
+    overflow-y: scroll;
+    background-color: var(--main-color-10);
+    padding: 10px 0px 10px 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    scrollbar-color: var(--main-color-30) transparent;
+    z-index: 1;
+}
+
+.selector .options-popup .option-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.selector .options-popup .option-container .option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+
+    font-family: var(--second-font);
+    font-size: 1rem;
+}
+
+.selector .options-popup .option-container .option-item.active {
+    background-color: var(--main-color-10);
+    color: var(--main-color-30);
+}

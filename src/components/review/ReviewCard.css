@@ -1,0 +1,22 @@
+.card {
+    max-width: 400px;
+    height: 600px;
+    overflow: hidden;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1em;
+    gap: 1em;
+
+    background-color: var(--main-color-10);
+    border: 2px solid var(--main-color-30);
+    border-radius: 20px;
+
+    position: relative;
+}
+
+.card .review-title {
+    width: 100%;
+    text-align: center;
+}
