@@ -9,23 +9,27 @@ import "react-multi-carousel/lib/styles.css";
 import './Top10Animes.css'
 
 const responsive = {
-    superLargeDesktop: {
+  superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
-    desktop: {
+      items: 5,
+      partialVisibilityGutter: 50
+  },
+  desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
+      items: 3,
+      partialVisibilityGutter: 40
+  },
+  tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
+      items: 2,
+      partialVisibilityGutter: 30
+  },
+  mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
+      items: 1,
+      partialVisibilityGutter: 30
+  }
+};
 
 function Top10Animes() {
 
@@ -47,7 +51,7 @@ function Top10Animes() {
 
             <h1>TOP 10 ANIMES</h1>
 
-            <Carousel showDots={true} responsive={responsive}>
+            <Carousel showDots={true} partialVisible={true} responsive={responsive}>
                 {animes.map(anime=>{
                     return <AnimeCard anime={anime} key={anime.id} /> 
                 })
