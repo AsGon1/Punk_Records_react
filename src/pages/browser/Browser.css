@@ -23,3 +23,17 @@ main {
     width: 100vw;
     background-color: var(--main-color-60);
 }
+
+.browser-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.browser-image img {
+    max-width: 400px; /* Controla el ancho máximo */
+    width: 100%;
+    height: auto;
+    display: block;
+}

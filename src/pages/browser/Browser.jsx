@@ -25,6 +25,10 @@ function Browser() {
     }
     return (
         <>
+            <section className="browser-image">
+                <img src="src/assets/radar_dragon.png" alt="radar dragon" />
+            </section>
+
             <BrowserBar onSubmit={handleFilters} />
             {searchFilters.type === "MANGA" ? (
                 <>
