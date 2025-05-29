@@ -52,8 +52,10 @@ function Register() {
         <section className="register">
 
             <h1>Register</h1>
-
-            {error && <p className="error">{error}</p>}
+            <section className="register__image">
+                {error? <img src="src/assets/error_img.png" alt="Error" /> : <img src="src/assets/register_img.png" alt="Register" />}
+                {error && <p className="error">{error}</p>}
+            </section>
 
             <form className="register__form" onSubmit={handleSubmit}>
 
